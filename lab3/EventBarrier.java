@@ -23,21 +23,7 @@ public class EventBarrier extends AbstractEventBarrier {
 	public synchronized void raise() {
 		eventInProg = true;
 		notifyAll();
-		
-		blockUntilAllThreadsComplete();
-		eventInProg = false;
-	}
 
-	public synchronized void complete() {
-		numUnfinishedThreads--;
-		blockUntilAllThreadsComplete();
-	}
-
-	public int waiters() {
-		return numUnfinishedThreads;
-	}
-	
-	private void blockUntilAllThreadsComplete(){
 		while(numUnfinishedThreads > 0) {
 			try {
 				wait();
@@ -45,7 +31,16 @@ public class EventBarrier extends AbstractEventBarrier {
 				e.printStackTrace();
 			}
 		}
+
+		eventInProg = false;
+	}
+
+	public synchronized void complete() {
+		numUnfinishedThreads--;
 		notifyAll();
-		return;
+	}
+
+	public int waiters() {
+		return numUnfinishedThreads;
 	}
 }
