@@ -45,6 +45,7 @@ public class EventBarrier extends AbstractEventBarrier {
 				e.printStackTrace();
 			}
 		}
+		notifyAll();
+		return;
 	}
-
 }
