@@ -8,7 +8,7 @@ public class EventBarrier extends AbstractEventBarrier {
 		numUnfinishedThreads = 0;
 	}
 	
-	public void arrive() {
+	public synchronized void arrive() {
 		numUnfinishedThreads++;
 		
 		while(!eventInProg){
@@ -20,7 +20,7 @@ public class EventBarrier extends AbstractEventBarrier {
 		}
 	}
 
-	public void raise() {
+	public synchronized void raise() {
 		eventInProg = true;
 		notifyAll();
 		
@@ -28,7 +28,7 @@ public class EventBarrier extends AbstractEventBarrier {
 		eventInProg = false;
 	}
 
-	public void complete() {
+	public synchronized void complete() {
 		numUnfinishedThreads--;
 		blockUntilAllThreadsComplete();
 	}
