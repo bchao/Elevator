@@ -43,4 +43,8 @@ public class EventBarrier extends AbstractEventBarrier {
 	public int waiters() {
 		return numUnfinishedThreads;
 	}
+	
+	public boolean isEventInProg() {
+		return eventInProg;
+	}
 }
