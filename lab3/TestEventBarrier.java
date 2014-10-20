@@ -18,12 +18,7 @@ public class TestEventBarrier {
 			mList.get(i).start();
 		}
 		
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		sleepThread();
 
 		assertEquals(4, evBar.waiters());
 	}
@@ -39,21 +34,33 @@ public class TestEventBarrier {
 		
 		evBar.raise();
 		
-		assertFalse(evBar.isEventInProg());
+		assertEquals(0, evBar.waiters()); // are all threads finished? should be
+		assertFalse(evBar.isEventInProg()); // was condition var set back to false?
 		
-		// last minstrel to squeeze through while EventBarrier raised
-		mList.get(numThreads-1).start();
+		mList.get(numThreads-1).start(); // send another thread to gate, gets rejected
 		
+		sleepThread();
+		System.out.println(evBar.waiters());
+		assertEquals(1, evBar.waiters());
 		assertFalse(evBar.isEventInProg());
+
 	}
 	
-	public void testHelper(int num){
+	private void testHelper(int num){
 		evBar = new EventBarrier();
 		mList = new ArrayList<Thread>();
 		
 		for(int i = 0; i<num; i++)
 			mList.add(new Minstrel(evBar));
 
+	}
+	
+	private void sleepThread() {
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
