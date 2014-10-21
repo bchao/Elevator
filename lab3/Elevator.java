@@ -1,5 +1,7 @@
 
 public class Elevator extends AbstractElevator{
+	
+	private ElevatorController controller;
 
 	public Elevator(int numFloors, int elevatorId, int maxOccupancyThreshold) {
 		super(numFloors, elevatorId, maxOccupancyThreshold);
