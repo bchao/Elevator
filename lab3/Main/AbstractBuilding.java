@@ -1,3 +1,6 @@
+package Main;
+import Elevators.AbstractElevator;
+
 
 public abstract class AbstractBuilding {
 
@@ -7,6 +10,8 @@ public abstract class AbstractBuilding {
 	/**
 	 * Other variables/data structures as needed goes here 
 	 */
+	
+	
 
 
 	public AbstractBuilding(int numFloors, int numElevators) {

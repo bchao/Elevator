@@ -1,10 +1,15 @@
+package Elevators;
+import Riders.*;
+import java.util.*;
 
-public abstract class AbstractElevator {
+public abstract class AbstractElevator extends Thread{
 
 	protected int numFloors; 
 	protected int elevatorId;
 	protected int maxOccupancyThreshold;
-
+	protected List<Rider> myRiders;
+	
+	
 	/**
 	 * Other variables/data structures as needed goes here 
 	 */
@@ -13,10 +18,11 @@ public abstract class AbstractElevator {
 		this.numFloors = numFloors;
 		this.elevatorId = elevatorId;
 		this.maxOccupancyThreshold = maxOccupancyThreshold;
+		myRiders = new ArrayList<Rider>();
 	}
 
 	/**
-	 * Elevator control inferface: invoked by Elevator thread.
+	 * Elevator control interface: invoked by Elevator thread.
  	 */
 
 	/* Signal incoming and outgoing riders */
@@ -26,7 +32,7 @@ public abstract class AbstractElevator {
 	 * When capacity is reached or the outgoing riders are exited and
 	 * incoming riders are in. 
  	 */
-	public abstract void ClosedDoors();
+	public abstract void CloseDoors();
 
 	/* Go to a requested floor */
 	public abstract void VisitFloor(int floor);
@@ -46,4 +52,12 @@ public abstract class AbstractElevator {
  	public abstract void RequestFloor(int floor);	
 	
 	/* Other methods as needed goes here */
+ 	
+	public abstract boolean isFull();
+	
+	public void addRider(Rider r) {
+		myRiders.add(r);
+	}
+	
+	public abstract boolean Enter(Rider r);
 }

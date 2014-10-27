@@ -1,8 +1,11 @@
+package Main;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
 
+import EventBarriers.EventBarrier;
+import Riders.Minstrel;
 import static org.junit.Assert.*;
 
 public class TestEventBarrier {

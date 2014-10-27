@@ -1,3 +1,6 @@
+package Riders;
+import EventBarriers.*;
+
 
 public class Minstrel extends Thread {
 	

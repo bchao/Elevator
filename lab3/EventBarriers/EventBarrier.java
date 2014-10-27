@@ -1,7 +1,9 @@
+package EventBarriers;
 
 public class EventBarrier extends AbstractEventBarrier {
-	private boolean eventInProg;
-	private int numUnfinishedThreads;
+	
+	protected boolean eventInProg;
+	protected int numUnfinishedThreads;
 	
 	public EventBarrier() {
 		eventInProg = false;

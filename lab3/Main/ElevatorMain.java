@@ -1,3 +1,4 @@
+package Main;
 
 public class ElevatorMain {
 	public static void main(String args[]) {
@@ -8,7 +9,7 @@ public class ElevatorMain {
 		} else {
 			if(args[1].equals("p1")) {
 				System.out.println("Testing EventBarrier");
-				TestEventBarrier.test();
+				//TestEventBarrier.test();
 			}
 			if(args[1].equals("p2part1")) {
 				// call the elevator part1
