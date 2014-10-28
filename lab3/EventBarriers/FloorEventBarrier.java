@@ -1,6 +1,15 @@
 package EventBarriers;
 import Elevators.Elevator;
 
+/**
+ * 
+ * This is the event barrier that is used on each floor of the building. It differs from
+ * the parent EventBarrier in that the raise() method waits on a slightly different condition,
+ * AND the barrier has an instance of the Elevator that called raise() in the first place.
+ * <br> <br>
+ * Each floor will have two of these: one for the up waiters, and one for the down waiters
+ *
+ */
 
 public class FloorEventBarrier extends EventBarrier {
 	

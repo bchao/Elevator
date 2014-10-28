@@ -8,6 +8,11 @@ import Main.Direction;
 import Main.Floor;
 import Riders.Rider;
 
+/**
+ * Class that extends AbstractElevator and implements the methods needed to transport
+ * riders. There is NO BOUND on the number of riders it can hold
+ *
+ */
 
 public class InfiniteElevator extends AbstractElevator {
 

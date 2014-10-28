@@ -4,6 +4,8 @@ public class ElevatorMain {
 	
 	public static void main(String args[]) {
 
+		
+		
 		if(args.length == 0) {
 			// No options specified; make the default as the part 3 elevator submission
 		} else if(args.length > 2) {

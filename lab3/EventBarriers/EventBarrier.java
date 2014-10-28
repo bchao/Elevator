@@ -1,5 +1,13 @@
 package EventBarriers;
 
+/**
+ * 
+ * This is the event barrier for part I. Allows threads to wait at a barrier, and then a 
+ * "gate keeper" comes along and raises the barrier and allows the waiting threads to do 
+ * what they need to do
+ *
+ */
+
 public class EventBarrier extends AbstractEventBarrier {
 	
 	protected boolean eventInProg;
