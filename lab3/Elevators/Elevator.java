@@ -58,18 +58,14 @@ public class Elevator extends AbstractElevator{
 	}
 
 	public boolean Enter() {
-		return isFull();
+		if (!isFull()) {
+			numOccupants++;	
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
-	@Override
-	public boolean Enter(Rider r) {
-		if (numOccupants != maxOccupants) {
-			myRiders.add(r);
-			numOccupants++;
-			return true;
-		}
-		return false;
-	}
 
 	public void Exit() {
 		

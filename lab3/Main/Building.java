@@ -8,19 +8,19 @@ import Riders.*;
 public class Building extends AbstractBuilding {
 	
 	private List<Floor> myFloors;
-	private List<Elevator> myElevators;
+	private List<AbstractElevator> myElevators;
 	
 	public Building(int numFloors, int numElevators, int maxOccupancy) {
 		super(numFloors, numElevators);
 		myFloors = new ArrayList<Floor>();
-		myElevators = new ArrayList<Elevator>();
+		myElevators = new ArrayList<AbstractElevator>();
 		initializeFloors(numFloors);
 		initializeElevators(numFloors, numElevators, maxOccupancy);
 	}
 
 	private void initializeElevators(int numFloors, int numElevators, int maxOccupancy) {
 		for (int i = 0; i < numElevators; i++) {
-			myElevators.add(new Elevator(numFloors, i, maxOccupancy, this));
+			myElevators.add(new InfiniteElevator(numFloors, i, maxOccupancy, this));
 		}
 	}
 
@@ -43,21 +43,18 @@ public class Building extends AbstractBuilding {
 	}
 
 	public void requestElevator(Rider rider) {
+		
 		int difference = rider.getCurrentLevel() - rider.getCurrentDestinationLevel();
-		
-		if (difference > 0) {
-			CallDown(rider.getCurrentLevel());
-		} else {
-			CallUp(rider.getCurrentLevel());			
-		}
-		
 		myFloors.get(rider.getCurrentLevel()).incrementWaiter(difference);
-
-		
+	
 	}
 
 	public Floor getFloor(int currentLevel) {
 		return myFloors.get(currentLevel);
+	}
+	
+	public int getMaxLevel() {
+		return myFloors.size();
 	}
 
 }

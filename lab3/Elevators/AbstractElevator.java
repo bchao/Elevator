@@ -1,14 +1,18 @@
 package Elevators;
+import EventBarriers.AbstractEventBarrier;
+import EventBarriers.EventBarrier;
 import Riders.*;
+
 import java.util.*;
 
-public abstract class AbstractElevator extends Thread{
+public abstract class AbstractElevator extends Thread {
 
 	protected int numFloors; 
 	protected int elevatorId;
 	protected int maxOccupancyThreshold;
 	protected List<Rider> myRiders;
-	
+	protected List<AbstractEventBarrier> myRiderEventBarriers;
+	protected String myName;
 	
 	/**
 	 * Other variables/data structures as needed goes here 
@@ -18,8 +22,12 @@ public abstract class AbstractElevator extends Thread{
 		this.numFloors = numFloors;
 		this.elevatorId = elevatorId;
 		this.maxOccupancyThreshold = maxOccupancyThreshold;
+		myName = "E" + elevatorId;
 		myRiders = new ArrayList<Rider>();
+		initializeRiderEventBarriers(numFloors);
 	}
+
+
 
 	/**
 	 * Elevator control interface: invoked by Elevator thread.
@@ -58,6 +66,15 @@ public abstract class AbstractElevator extends Thread{
 	public void addRider(Rider r) {
 		myRiders.add(r);
 	}
+		
+	private void initializeRiderEventBarriers(int numFloors) {
+		for (int i = 0; i < numFloors; i++) {
+			myRiderEventBarriers.add(new EventBarrier());
+		}
+	}
+
+	public AbstractEventBarrier getElevatorWaitingBarrier(int destinationLevel) {		
+		return myRiderEventBarriers.get(destinationLevel);
+	}
 	
-	public abstract boolean Enter(Rider r);
 }

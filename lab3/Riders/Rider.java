@@ -12,11 +12,17 @@ public class Rider extends Thread{
 	private EventBarrier myBarrier;
 	private int currentLevel;
 	private int destinationLevel;
+	private AbstractElevator myElevator;
+	private int myId;
+	private String myName;
 	
-	public Rider(Building b, int floor) {
+	public Rider(int id, Building b, int floor) {
 		myBarrier = null;
 		currentLevel = floor;
 		myBuilding = b;
+		myElevator = null;
+		myId = id;
+		myName = "R" + id;
 	}
 	
 	public void setDestination(int n) {
@@ -27,15 +33,36 @@ public class Rider extends Thread{
 		Floor currentFloor = myBuilding.getFloor(currentLevel);
 		myBuilding.requestElevator(this);
 		FloorEventBarrier myEventBarrier = 
-					(FloorEventBarrier) currentFloor.getEventBarrier(currentLevel - 
-																	destinationLevel);
-		myEventBarrier.arrive();
+			(FloorEventBarrier) currentFloor.getEventBarrier(currentLevel - destinationLevel);
+		
+		printPushButton(currentLevel - destinationLevel);
+		
+		myEventBarrier.arrive(); // wait for elevator to arrive
 		// get in elevator and do shit
-		AbstractElevator myElevator = myEventBarrier.getElevator();
-		if (myElevator.Enter(this)) {
-			// NEEDS TO BE IMPLEMENTED
+		myElevator = myEventBarrier.getElevator();
+		if (myElevator.Enter()) {
+			
+			printEnterElevator(myElevator, currentFloor);
+			
+			myElevator.RequestFloor(destinationLevel);
+			myEventBarrier.complete(); // signal to event barrier for up/down on the floor
+			myElevator.getElevatorWaitingBarrier(destinationLevel).arrive(); // wait inside
+			
+			printExitElevator(myBuilding.getFloor(destinationLevel));
+			
+			myElevator.Exit(); // get out
+			myElevator.getElevatorWaitingBarrier(destinationLevel).complete(); // signal get out
+			currentLevel = destinationLevel; // update riders location
+			myElevator = null; // now doesn't have an elevator
+			myBarrier = null; // now doesn't have a wait barrier
+			
 		}
+		
+		// **** IMPLEMENT THE LOOP FOR FILE READING NOW ****
+
+		
 	}
+	
 	
 	public int getCurrentLevel() {
 		return currentLevel;
@@ -43,6 +70,25 @@ public class Rider extends Thread{
 	
 	public int getCurrentDestinationLevel() {
 		return destinationLevel;
+	}
+	
+	
+	// ***** PRINT METHODS *****
+	
+	
+	private void printPushButton(int i) {
+		String s = "U";
+		if (i < 0) s = "D";
+		System.out.println(myName + " pushes " + s + " " + currentLevel);
+	}
+	
+	private void printEnterElevator(AbstractElevator e, Floor f) {
+		System.out.println(myName + " enters " + e.getName() + " on " + f.getName());
+		System.out.println(myName + " pushes " + e.getName() + "B" + destinationLevel);
+	}
+	
+	private void printExitElevator(Floor f) {
+		System.out.println(myName + " exits " + myElevator.getName() + " on " + f.getName());
 	}
 	
 	

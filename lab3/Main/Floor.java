@@ -8,6 +8,7 @@ public class Floor {
 	private int numUpWaiters;
 	private int numDownWaiters;
 	private int floorID;
+	private String floorName;
 	
 	private EventBarrier myUpEventBarrier;
 	private EventBarrier myDownEventBarrier;
@@ -18,6 +19,7 @@ public class Floor {
 		numUpWaiters = 0;
 		numDownWaiters = 0;
 		floorID = id;
+		floorName = "F" + id;
 	}
 
 	public void incrementWaiter(int difference) { // difference = currentFloor - destination
@@ -55,7 +57,9 @@ public class Floor {
 		return null;
 	}
 	
-	
+	public String getName() {
+		return floorName;
+	}
 	
 	
 	
