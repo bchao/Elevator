@@ -33,7 +33,7 @@ public class FloorEventBarrier extends EventBarrier {
 		eventInProg = false;
 	}
 	
-	public Elevator getElevator() {
+	public synchronized Elevator getElevator() {
 		return currentElevator;
 	}
 }

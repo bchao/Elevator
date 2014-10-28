@@ -67,13 +67,13 @@ public abstract class AbstractElevator extends Thread {
 		myRiders.add(r);
 	}
 		
-	private void initializeRiderEventBarriers(int numFloors) {
+	private synchronized void initializeRiderEventBarriers(int numFloors) {
 		for (int i = 0; i < numFloors; i++) {
 			myRiderEventBarriers.add(new EventBarrier());
 		}
 	}
 
-	public AbstractEventBarrier getElevatorWaitingBarrier(int destinationLevel) {		
+	public synchronized AbstractEventBarrier getElevatorWaitingBarrier(int destinationLevel) {		
 		return myRiderEventBarriers.get(destinationLevel);
 	}
 	

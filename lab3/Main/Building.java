@@ -42,18 +42,18 @@ public class Building extends AbstractBuilding {
 		return null;
 	}
 
-	public void requestElevator(Rider rider) {
+	public synchronized void requestElevator(Rider rider) {
 		
 		int difference = rider.getCurrentLevel() - rider.getCurrentDestinationLevel();
 		myFloors.get(rider.getCurrentLevel()).incrementWaiter(difference);
 	
 	}
 
-	public Floor getFloor(int currentLevel) {
+	public synchronized Floor getFloor(int currentLevel) {
 		return myFloors.get(currentLevel);
 	}
 	
-	public int getMaxLevel() {
+	public synchronized int getMaxLevel() {
 		return myFloors.size();
 	}
 

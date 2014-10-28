@@ -11,11 +11,11 @@ import Riders.Rider;
 
 public class InfiniteElevator extends AbstractElevator {
 
-	private int currentLevel;
-	private int numOccupants;
-	private Set<Integer> myDestinations;
-	private Building myBuilding;
-	private Direction myDir;
+	protected int currentLevel;
+	protected int numOccupants;
+	protected Set<Integer> myDestinations;
+	protected Building myBuilding;
+	protected Direction myDir;
 
 	public InfiniteElevator(int numFloors, int elevatorId, int maxOccupancyThreshold, 
 														Building building) {
@@ -37,15 +37,13 @@ public class InfiniteElevator extends AbstractElevator {
 			
 				VisitFloor(currentLevel);
 			}
-			
-			// NEED TO IMPLEMENT, MUST CHANGE LEVEL GIVEN DIRECTION
-			
+						
 			changeLevel();
 		}
 	}
 
 
-	private void changeLevel() {
+	private synchronized void changeLevel() {
 		if (currentLevel == myBuilding.getMaxLevel()) myDir = Direction.DOWN;
 		if (currentLevel == 0) myDir = Direction.UP;
 		
@@ -54,7 +52,7 @@ public class InfiniteElevator extends AbstractElevator {
 		currentLevel += myDir.getDir();
 	}
 
-	public void OpenDoors() {
+	public synchronized void OpenDoors() {
 		
 		printDoorsOpen();
 		
@@ -63,34 +61,34 @@ public class InfiniteElevator extends AbstractElevator {
 		currentFloor.getEventBarrier(myDir).raise(); // notify those waiting that 'vator is here
 	}
 
-	public void CloseDoors() {
+	public synchronized void CloseDoors() {
 		
 		printDoorsClose();
 		
 		myDestinations.remove(currentLevel);
 	}
 
-	public void VisitFloor(int floor) {
+	public synchronized void VisitFloor(int floor) {
 		OpenDoors();
 		CloseDoors();
 	}
 
 	
-	public boolean Enter() {
+	public synchronized boolean Enter() {
 		numOccupants++;
 		return true;
 	}
 
-	public void Exit() {
+	public synchronized void Exit() {
 		numOccupants--;
 	}
 	
 
-	public void RequestFloor(int floor) {
+	public synchronized void RequestFloor(int floor) {
 		myDestinations.add(floor);
 	}
 	
-	public boolean isFull() {
+	public synchronized boolean isFull() {
 		return false;
 	}
 
