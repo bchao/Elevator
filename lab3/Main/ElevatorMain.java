@@ -24,7 +24,7 @@ public class ElevatorMain {
 			} else if(args[1].equals("p2part3")) {
 				// call the elevator part3
 			}
-			// ...
+			// ...a
 		}
 	}
 }

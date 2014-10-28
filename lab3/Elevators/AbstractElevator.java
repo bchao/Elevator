@@ -24,10 +24,9 @@ public abstract class AbstractElevator extends Thread {
 		this.maxOccupancyThreshold = maxOccupancyThreshold;
 		myName = "E" + elevatorId;
 		myRiders = new ArrayList<Rider>();
+		myRiderEventBarriers = new ArrayList<AbstractEventBarrier>();
 		initializeRiderEventBarriers(numFloors);
 	}
-
-
 
 	/**
 	 * Elevator control interface: invoked by Elevator thread.

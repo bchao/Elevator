@@ -111,15 +111,7 @@ public class InfiniteElevator extends AbstractElevator {
 	}
 	
 	private void printMoveToNewLevel() {
-		String s = "";
-		switch (myDir) {
-		case UP:
-			s = " moves up to ";
-		case DOWN:
-			s = " moves down to ";
-		}
-		
-		System.out.println(myName + s + myBuilding.getFloor(currentLevel + myDir.getDir()));
+		System.out.println(myName + " moves " + myDir + " to " + myBuilding.getFloor(currentLevel + myDir.getDir()).getName());
 	}
 
 }

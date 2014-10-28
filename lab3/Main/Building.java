@@ -17,6 +17,12 @@ public class Building extends AbstractBuilding {
 		initializeFloors(numFloors);
 		initializeElevators(numFloors, numElevators, maxOccupancy);
 	}
+	
+	public void runElevators() {
+		for(int i = 0; i < numElevators; i++) {
+			myElevators.get(i).run();
+		}
+	}
 
 	private void initializeElevators(int numFloors, int numElevators, int maxOccupancy) {
 		for (int i = 0; i < numElevators; i++) {
@@ -54,7 +60,7 @@ public class Building extends AbstractBuilding {
 	}
 	
 	public synchronized int getMaxLevel() {
-		return myFloors.size();
+		return myFloors.size() - 1;
 	}
 
 }

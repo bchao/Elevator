@@ -26,7 +26,4 @@ public class Elevator extends InfiniteElevator{
 		return numOccupants == maxOccupants;
 	}
 
-	
-
-
 }

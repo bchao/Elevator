@@ -13,10 +13,10 @@ public class Rider extends Thread{
 	private int currentLevel;
 	private int destinationLevel;
 	private AbstractElevator myElevator;
-	private int myId;
+	private String myId;
 	private String myName;
 	
-	public Rider(int id, Building b, int floor) {
+	public Rider(String id, Building b, int floor) {
 		myBarrier = null;
 		currentLevel = floor;
 		myBuilding = b;
@@ -77,8 +77,8 @@ public class Rider extends Thread{
 	
 	
 	private void printPushButton(int i) {
-		String s = "U";
-		if (i < 0) s = "D";
+		String s = "D";
+		if (i < 0) s = "U";
 		System.out.println(myName + " pushes " + s + " " + currentLevel);
 	}
 	
