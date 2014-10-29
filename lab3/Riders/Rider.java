@@ -13,10 +13,10 @@ public class Rider extends Thread{
 	private int currentLevel;
 	private int destinationLevel;
 	private AbstractElevator myElevator;
-	private String myId;
+	private int myId;
 	private String myName;
 	
-	public Rider(String id, Building b, int floor) {
+	public Rider(int id, Building b, int floor) {
 		myBarrier = null;
 		currentLevel = floor;
 		myBuilding = b;
