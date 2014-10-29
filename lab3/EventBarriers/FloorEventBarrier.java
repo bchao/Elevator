@@ -32,7 +32,7 @@ public class FloorEventBarrier extends EventBarrier {
 		eventInProg = true;
 		notifyAll();
 
-		while(numUnfinishedThreads > 0 || !currentElevator.isFull()) {
+		while(numUnfinishedThreads > 0 && !currentElevator.isFull()) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
