@@ -49,8 +49,6 @@ public class InfiniteElevator extends AbstractElevator {
 			
 			if (myDestinations.contains(currentLevel) || 
 					currentFloor.peopleWaiting(myDir)) {
-				//System.out.println(myDestinations.contains(currentFloor));
-				//System.out.println(currentFloor.peopleWaiting(myDir));
 				VisitFloor(currentLevel);
 			}
 						
@@ -92,8 +90,9 @@ public class InfiniteElevator extends AbstractElevator {
 		
 		myRiderEventBarriers.get(currentLevel).raise(); // let the riders out!
 		Floor currentFloor = myBuilding.getFloor(currentLevel);
-		currentFloor.getEventBarrier(myDir).raise(this); // notify those waiting that 'vator is here
-		
+		if (currentLevel != myBuilding.getMaxLevel() && currentLevel != 0) 
+			currentFloor.getEventBarrier(myDir).raise(this); // notify those waiting that 'vator is here
+		else currentFloor.getEventBarrier(myDir.getOppositeDir()).raise(this);
 //		try {
 //			throw new Exception();
 //		} catch (Exception e) {

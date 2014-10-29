@@ -5,6 +5,7 @@ public class ElevatorMain {
 	public static void main(String args[]) {
 
 		
+		// Class called Initializer (parent class)
 		
 		if(args.length == 0) {
 			// No options specified; make the default as the part 3 elevator submission

@@ -15,4 +15,9 @@ public enum Direction {
 		return direction;
 	}
 	
+	public Direction getOppositeDir() {
+		if (direction == 1) return DOWN;
+		else return UP;
+	}
+	
 }
