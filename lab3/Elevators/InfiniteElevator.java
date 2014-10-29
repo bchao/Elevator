@@ -41,9 +41,16 @@ public class InfiniteElevator extends AbstractElevator {
 			
 			Floor currentFloor = myBuilding.getFloor(currentLevel);
 
-			if (myDestinations.contains(currentFloor) || 
-					currentFloor.peopleWaiting(myDir)) {
+//			if (numOccupants > 0) {
+//				for (int i : myDestinations) {
+//					System.out.println(i);
+//				}
+//			}
 			
+			if (myDestinations.contains(currentLevel) || 
+					currentFloor.peopleWaiting(myDir)) {
+				//System.out.println(myDestinations.contains(currentFloor));
+				//System.out.println(currentFloor.peopleWaiting(myDir));
 				VisitFloor(currentLevel);
 			}
 						
@@ -87,12 +94,12 @@ public class InfiniteElevator extends AbstractElevator {
 		Floor currentFloor = myBuilding.getFloor(currentLevel);
 		currentFloor.getEventBarrier(myDir).raise(this); // notify those waiting that 'vator is here
 		
-		try {
-			throw new Exception();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			throw new Exception();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 	public void CloseDoors() {
@@ -109,7 +116,7 @@ public class InfiniteElevator extends AbstractElevator {
 
 	
 	public synchronized boolean Enter() {
-		System.out.println("INSIDE YESS");
+		//System.out.println("INSIDE YESS");
 		numOccupants++;
 		return true;
 	}

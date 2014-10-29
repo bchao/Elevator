@@ -18,10 +18,9 @@ public class TestElevator {
 		Rider Peter = new Rider(0, myBuilding, 2);
 		Peter.setDestination(9);
 		
-
 		Peter.start();
 		myBuilding.runElevators();
-
+		
 		EventBarrier b = new EventBarrier();
 		b.arrive();
 

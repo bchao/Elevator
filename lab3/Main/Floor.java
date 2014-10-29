@@ -26,6 +26,11 @@ public class Floor {
 		if (difference > 0) numDownWaiters++; 
 		else numUpWaiters++;
 	}
+	
+	public void decrementWaiter(int difference) {
+		if (difference > 0) numDownWaiters--;
+		else numUpWaiters--;
+	}
 
 	public EventBarrier getEventBarrier(int difference) {
 		if (difference < 0) return myUpEventBarrier;

@@ -41,20 +41,23 @@ public class Rider extends Thread{
 		myEventBarrier.arrive(); // wait for elevator to arrive
 		// get in elevator and do shit
 		myElevator = myEventBarrier.getElevator();
-		System.out.println("SDFSDFSDF");
-		System.out.println(myElevator.getClass().getName());
+		//System.out.println("SDFSDFSDF");
+		//System.out.println(myElevator.getClass().getName());
 		//System.out.println(myElevator.Enter());
 		
 		if (myElevator.Enter()) {
-			System.out.println("SDFSDFSDF");
+			int difference = currentLevel - destinationLevel;
+			myBuilding.getFloor(currentLevel).decrementWaiter(difference);
+			
+			//System.out.println("SDFSDFSDF");
 			
 			printEnterElevator(myElevator, currentFloor);
 			
 			myElevator.RequestFloor(destinationLevel);
-			myEventBarrier.complete(); // signal to event barrier for up/down on the floor
+			myEventBarrier.complete();	// signal to event barrier for up/down on the floor
 			myElevator.getElevatorWaitingBarrier(destinationLevel).arrive(); // wait inside
 			
-			printExitElevator(myBuilding.getFloor(destinationLevel));
+			printExitElevator(myElevator, myBuilding.getFloor(destinationLevel));
 
 			myElevator.Exit(); // get out
 			myElevator.getElevatorWaitingBarrier(destinationLevel).complete(); // signal get out
@@ -93,8 +96,8 @@ public class Rider extends Thread{
 		System.out.println(myName + " pushes " + e.getStringName() + "B" + destinationLevel);
 	}
 	
-	private void printExitElevator(Floor f) {
-		System.out.println(myName + " exits " + myElevator.getName() + " on " + f.getName());
+	private void printExitElevator(InfiniteElevator e, Floor f) {
+		System.out.println(myName + " exits " + e.getStringName() + " on " + f.getName());
 	}
 	
 	

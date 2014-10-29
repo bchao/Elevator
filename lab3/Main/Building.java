@@ -52,7 +52,6 @@ public class Building extends AbstractBuilding {
 		setGlobalNumPeopleWaiting(1);
 		int difference = rider.getCurrentLevel() - rider.getCurrentDestinationLevel();
 		myFloors.get(rider.getCurrentLevel()).incrementWaiter(difference);
-	
 	}
 
 	public synchronized Floor getFloor(int currentLevel) {
