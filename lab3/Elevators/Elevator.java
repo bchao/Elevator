@@ -1,6 +1,6 @@
 package Elevators;
 
-import Main.Building;
+import Buildings.Building;
 
 /**
  * Same as the Infinite Elevator except we've implemented the isFull() method to 

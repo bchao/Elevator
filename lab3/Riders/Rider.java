@@ -1,9 +1,9 @@
 package Riders;
+import Buildings.Building;
 import Elevators.AbstractElevator;
 import Elevators.InfiniteElevator;
 import EventBarriers.EventBarrier;
 import EventBarriers.FloorEventBarrier;
-import Main.Building;
 import Main.Floor;
 
 

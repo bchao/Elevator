@@ -3,8 +3,8 @@ package Elevators;
 import java.util.HashSet;
 import java.util.Set;
 
+import Buildings.Building;
 import EventBarriers.FloorEventBarrier;
-import Main.Building;
 import Main.Direction;
 import Main.Floor;
 import Riders.Rider;

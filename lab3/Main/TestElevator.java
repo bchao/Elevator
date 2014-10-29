@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import Buildings.Building;
+import Buildings.PartOneBuilding;
 import EventBarriers.EventBarrier;
 import Riders.Rider;
 
@@ -14,7 +16,7 @@ public class TestElevator {
 	@Test
 	public void testOneElevator() {
 		
-		myBuilding = new Building(10, 1, 10);
+		myBuilding = new PartOneBuilding(10, 1, 10);
 		Rider Peter = new Rider(0, myBuilding, 2);
 		Peter.setDestination(3);
 		Rider Parker = new Rider(1, myBuilding, 2);

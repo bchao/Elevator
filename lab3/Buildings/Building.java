@@ -1,32 +1,26 @@
-package Main;
+package Buildings;
 
 import java.util.*;
 
 import Elevators.*;
+import Main.Floor;
 import Riders.*;
 
 public class Building extends AbstractBuilding {
 	
-	private List<Floor> myFloors;
-	private List<AbstractElevator> myElevators;
+	protected List<Floor> myFloors;
+	protected List<AbstractElevator> myElevators;
 	
 	public Building(int numFloors, int numElevators, int maxOccupancy) {
 		super(numFloors, numElevators);
 		myFloors = new ArrayList<Floor>();
 		myElevators = new ArrayList<AbstractElevator>();
 		initializeFloors(numFloors);
-		initializeElevators(numFloors, numElevators, maxOccupancy);
 	}
 	
 	public void runElevators() {
 		for(int i = 0; i < numElevators; i++) {
 			myElevators.get(i).start();
-		}
-	}
-
-	private void initializeElevators(int numFloors, int numElevators, int maxOccupancy) {
-		for (int i = 0; i < numElevators; i++) {
-			myElevators.add(new InfiniteElevator(numFloors, i, maxOccupancy, this));
 		}
 	}
 

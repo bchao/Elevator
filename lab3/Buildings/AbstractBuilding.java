@@ -1,4 +1,4 @@
-package Main;
+package Buildings;
 import Elevators.AbstractElevator;
 
 
