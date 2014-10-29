@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import EventBarriers.EventBarrier;
 import Riders.Rider;
 
 public class TestElevator {
@@ -17,12 +18,14 @@ public class TestElevator {
 		Rider Peter = new Rider(0, myBuilding, 2);
 		Peter.setDestination(9);
 		
-		myBuilding.runElevators();
 
 		Peter.start();
+		myBuilding.runElevators();
 
+		EventBarrier b = new EventBarrier();
+		b.arrive();
 
-		sleepThread();	
+		//sleepThread();	
 		assertTrue(myBuilding.getFloor(0).peopleWaiting(Direction.UP));
 		assertTrue(myBuilding.getFloor(9).peopleWaiting(Direction.UP));
 	}

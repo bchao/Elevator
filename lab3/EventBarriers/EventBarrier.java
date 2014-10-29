@@ -25,7 +25,6 @@ public class EventBarrier extends AbstractEventBarrier {
 	public synchronized void arrive() {
 		numUnfinishedThreads++;
 		System.out.println("NOTIFY ALL");
-		notifyAll();
 		while(!eventInProg){
 			try{
 				wait();
@@ -33,12 +32,12 @@ public class EventBarrier extends AbstractEventBarrier {
 				e.printStackTrace();
 			}
 		}
+
 	}
 
 	public synchronized void raise() {
 		eventInProg = true;
 		notifyAll();
-
 		while(numUnfinishedThreads > 0) {
 			try {
 				wait();
@@ -46,7 +45,7 @@ public class EventBarrier extends AbstractEventBarrier {
 				e.printStackTrace();
 			}
 		}
-
+		notifyAll();
 		eventInProg = false;
 	}
 

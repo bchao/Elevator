@@ -40,6 +40,7 @@ public class FloorEventBarrier extends EventBarrier {
 			}
 		}
 
+		notifyAll();
 		eventInProg = false;
 	}
 	

@@ -56,10 +56,12 @@ public class InfiniteElevator extends AbstractElevator {
 	}
 
 	private synchronized void waitForRequests() {
-		System.out.println(!myBuilding.peopleWaiting());
+		//System.out.println(!myBuilding.peopleWaiting());
+		
 		while (!myBuilding.peopleWaiting()) {
 			try {
-				System.out.println(!myBuilding.peopleWaiting());
+				//System.out.println(!myBuilding.peopleWaiting());
+				notifyAll();
 				wait();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
