@@ -79,7 +79,7 @@ public class InfiniteElevator extends AbstractElevator {
 		currentLevel += myDir.getDir();
 	}
 
-	public synchronized void OpenDoors() {
+	public void OpenDoors() {
 		
 		printDoorsOpen();
 		
@@ -95,14 +95,14 @@ public class InfiniteElevator extends AbstractElevator {
 		}
 	}
 
-	public synchronized void CloseDoors() {
+	public void CloseDoors() {
 		
 		printDoorsClose();
 		
 		myDestinations.remove(currentLevel);
 	}
 
-	public synchronized void VisitFloor(int floor) {
+	public void VisitFloor(int floor) {
 		OpenDoors();
 		CloseDoors();
 	}
@@ -151,6 +151,10 @@ public class InfiniteElevator extends AbstractElevator {
 
 	public int getNumOccupants() {
 		return numOccupants;
+	}
+	
+	public String getStringName() {
+		return myName;
 	}
 
 }

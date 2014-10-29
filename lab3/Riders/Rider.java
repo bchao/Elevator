@@ -1,5 +1,6 @@
 package Riders;
 import Elevators.AbstractElevator;
+import Elevators.InfiniteElevator;
 import EventBarriers.EventBarrier;
 import EventBarriers.FloorEventBarrier;
 import Main.Building;
@@ -12,7 +13,7 @@ public class Rider extends Thread{
 	private EventBarrier myBarrier;
 	private int currentLevel;
 	private int destinationLevel;
-	private AbstractElevator myElevator;
+	private InfiniteElevator myElevator;
 	private int myId;
 	private String myName;
 	
@@ -44,7 +45,7 @@ public class Rider extends Thread{
 		System.out.println(myElevator.getClass().getName());
 		//System.out.println(myElevator.Enter());
 		
-		if (myEventBarrier.hasRoom()) {
+		if (myElevator.Enter()) {
 			System.out.println("SDFSDFSDF");
 			
 			printEnterElevator(myElevator, currentFloor);
@@ -87,9 +88,9 @@ public class Rider extends Thread{
 		System.out.println(myName + " pushes " + s + currentLevel);
 	}
 	
-	private void printEnterElevator(AbstractElevator e, Floor f) {
-		System.out.println(myName + " enters " + e.getName() + " on " + f.getName());
-		System.out.println(myName + " pushes " + e.getName() + "B" + destinationLevel);
+	private void printEnterElevator(InfiniteElevator e, Floor f) {
+		System.out.println(myName + " enters " + e.getStringName() + " on " + f.getName());
+		System.out.println(myName + " pushes " + e.getStringName() + "B" + destinationLevel);
 	}
 	
 	private void printExitElevator(Floor f) {

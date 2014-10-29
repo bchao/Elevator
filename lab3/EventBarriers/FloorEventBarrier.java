@@ -48,7 +48,7 @@ public class FloorEventBarrier extends EventBarrier {
 		eventInProg = false;
 	}
 	
-	public synchronized AbstractElevator getElevator() {
+	public synchronized InfiniteElevator getElevator() {
 		return currentElevator;
 	}
 	
