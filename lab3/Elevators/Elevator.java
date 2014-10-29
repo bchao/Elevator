@@ -25,5 +25,15 @@ public class Elevator extends InfiniteElevator{
 	public synchronized boolean isFull() {
 		return numOccupants == maxOccupants;
 	}
+	
+	@Override
+	public synchronized boolean Enter() {
+		if (!isFull()) {
+			numOccupants++;
+			return true;
+		}
+		else return false; // meaning that the thread didn't get in the elevator
+		
+	}
 
 }

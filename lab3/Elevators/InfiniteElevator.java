@@ -115,9 +115,12 @@ public class InfiniteElevator extends AbstractElevator {
 
 	
 	public synchronized boolean Enter() {
-		//System.out.println("INSIDE YESS");
-		numOccupants++;
-		return true;
+		if (!isFull()) {
+			numOccupants++;
+			return true;
+		}
+		else return isFull();
+		
 	}
 
 	public synchronized void Exit() {
