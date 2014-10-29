@@ -1,6 +1,7 @@
 package EventBarriers;
 import Elevators.AbstractElevator;
 import Elevators.Elevator;
+import Elevators.InfiniteElevator;
 
 /**
  * 
@@ -14,15 +15,18 @@ import Elevators.Elevator;
 
 public class FloorEventBarrier extends EventBarrier {
 	
-	private AbstractElevator currentElevator;
+	private InfiniteElevator currentElevator;
+	private int elevatorSpace = 0;
 	
 	public FloorEventBarrier() {
 		super();
 		currentElevator = null;
 	}
 	
-	public synchronized void raise(AbstractElevator el) {
+	public synchronized void raise(InfiniteElevator el) {
 		currentElevator = el;
+		
+		elevatorSpace = el.getMaxOccupancy() - el.getNumOccupants();
 		raise();
 		currentElevator = null;
 	}
@@ -32,7 +36,7 @@ public class FloorEventBarrier extends EventBarrier {
 		eventInProg = true;
 		notifyAll();
 
-		while(numUnfinishedThreads > 0 || !currentElevator.isFull()) {
+		while(numUnfinishedThreads > 0 && !currentElevator.isFull()) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
@@ -46,5 +50,9 @@ public class FloorEventBarrier extends EventBarrier {
 	
 	public synchronized AbstractElevator getElevator() {
 		return currentElevator;
+	}
+	
+	public boolean hasRoom() {
+		return elevatorSpace > 0;
 	}
 }

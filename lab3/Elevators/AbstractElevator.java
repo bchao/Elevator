@@ -75,6 +75,8 @@ public abstract class AbstractElevator extends Thread {
 	public synchronized AbstractEventBarrier getElevatorWaitingBarrier(int destinationLevel) {		
 		return myRiderEventBarriers.get(destinationLevel);
 	}
+
+
 	
 
 	

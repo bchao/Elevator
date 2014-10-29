@@ -57,16 +57,16 @@ public class InfiniteElevator extends AbstractElevator {
 
 	private synchronized void waitForRequests() {
 		//System.out.println(!myBuilding.peopleWaiting());
-		
+		notifyAll();
 		while (!myBuilding.peopleWaiting()) {
 			try {
 				//System.out.println(!myBuilding.peopleWaiting());
-				notifyAll();
 				wait();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}			
 		}
+		notifyAll();
 	}
 
 
@@ -86,6 +86,13 @@ public class InfiniteElevator extends AbstractElevator {
 		myRiderEventBarriers.get(currentLevel).raise(); // let the riders out!
 		Floor currentFloor = myBuilding.getFloor(currentLevel);
 		currentFloor.getEventBarrier(myDir).raise(this); // notify those waiting that 'vator is here
+		
+		try {
+			throw new Exception();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public synchronized void CloseDoors() {
@@ -102,6 +109,7 @@ public class InfiniteElevator extends AbstractElevator {
 
 	
 	public synchronized boolean Enter() {
+		System.out.println("INSIDE YESS");
 		numOccupants++;
 		return true;
 	}
@@ -135,6 +143,14 @@ public class InfiniteElevator extends AbstractElevator {
 	
 	private void printMoveToNewLevel() {
 		System.out.println(myName + " moves " + myDir + " to " + myBuilding.getFloor(currentLevel + myDir.getDir()).getName());
+	}
+	
+	public int getMaxOccupancy() {
+		return maxOccupancyThreshold;
+	}
+
+	public int getNumOccupants() {
+		return numOccupants;
 	}
 
 }

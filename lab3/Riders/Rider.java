@@ -40,7 +40,12 @@ public class Rider extends Thread{
 		myEventBarrier.arrive(); // wait for elevator to arrive
 		// get in elevator and do shit
 		myElevator = myEventBarrier.getElevator();
-		if (myElevator.Enter()) {
+		System.out.println("SDFSDFSDF");
+		System.out.println(myElevator.getClass().getName());
+		//System.out.println(myElevator.Enter());
+		
+		if (myEventBarrier.hasRoom()) {
+			System.out.println("SDFSDFSDF");
 			
 			printEnterElevator(myElevator, currentFloor);
 			
@@ -49,7 +54,7 @@ public class Rider extends Thread{
 			myElevator.getElevatorWaitingBarrier(destinationLevel).arrive(); // wait inside
 			
 			printExitElevator(myBuilding.getFloor(destinationLevel));
-			
+
 			myElevator.Exit(); // get out
 			myElevator.getElevatorWaitingBarrier(destinationLevel).complete(); // signal get out
 			currentLevel = destinationLevel; // update riders location

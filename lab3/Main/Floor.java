@@ -28,7 +28,7 @@ public class Floor {
 	}
 
 	public EventBarrier getEventBarrier(int difference) {
-		if (difference > 0) return myUpEventBarrier;
+		if (difference < 0) return myUpEventBarrier;
 		else return myDownEventBarrier;
 	}
 	
