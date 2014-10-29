@@ -3,6 +3,7 @@ package Elevators;
 import java.util.HashSet;
 import java.util.Set;
 
+import EventBarriers.FloorEventBarrier;
 import Main.Building;
 import Main.Direction;
 import Main.Floor;
@@ -35,8 +36,11 @@ public class InfiniteElevator extends AbstractElevator {
 	
 	public void run() {
 		while(true) {
-			Floor currentFloor = myBuilding.getFloor(currentLevel);
 			
+			waitForRequests();
+			
+			Floor currentFloor = myBuilding.getFloor(currentLevel);
+
 			if (myDestinations.contains(currentFloor) || 
 					currentFloor.peopleWaiting(myDir)) {
 			
@@ -44,6 +48,22 @@ public class InfiniteElevator extends AbstractElevator {
 			}
 						
 			changeLevel();
+			
+			// go idle if there is no one requesting a floor in the building
+
+			
+		}
+	}
+
+	private synchronized void waitForRequests() {
+		System.out.println(!myBuilding.peopleWaiting());
+		while (!myBuilding.peopleWaiting()) {
+			try {
+				System.out.println(!myBuilding.peopleWaiting());
+				wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}			
 		}
 	}
 
@@ -63,7 +83,7 @@ public class InfiniteElevator extends AbstractElevator {
 		
 		myRiderEventBarriers.get(currentLevel).raise(); // let the riders out!
 		Floor currentFloor = myBuilding.getFloor(currentLevel);
-		currentFloor.getEventBarrier(myDir).raise(); // notify those waiting that 'vator is here
+		currentFloor.getEventBarrier(myDir).raise(this); // notify those waiting that 'vator is here
 	}
 
 	public synchronized void CloseDoors() {
@@ -86,6 +106,7 @@ public class InfiniteElevator extends AbstractElevator {
 
 	public synchronized void Exit() {
 		numOccupants--;
+		myBuilding.setGlobalNumPeopleWaiting(-1);
 	}
 	
 

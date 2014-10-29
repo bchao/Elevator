@@ -11,7 +11,7 @@ public abstract class AbstractElevator extends Thread {
 	protected int elevatorId;
 	protected int maxOccupancyThreshold;
 	protected List<Rider> myRiders;
-	protected List<AbstractEventBarrier> myRiderEventBarriers;
+	protected List<EventBarrier> myRiderEventBarriers;
 	protected String myName;
 	
 	/**
@@ -24,7 +24,7 @@ public abstract class AbstractElevator extends Thread {
 		this.maxOccupancyThreshold = maxOccupancyThreshold;
 		myName = "E" + elevatorId;
 		myRiders = new ArrayList<Rider>();
-		myRiderEventBarriers = new ArrayList<AbstractEventBarrier>();
+		myRiderEventBarriers = new ArrayList<EventBarrier>();
 		initializeRiderEventBarriers(numFloors);
 	}
 
@@ -75,5 +75,7 @@ public abstract class AbstractElevator extends Thread {
 	public synchronized AbstractEventBarrier getElevatorWaitingBarrier(int destinationLevel) {		
 		return myRiderEventBarriers.get(destinationLevel);
 	}
+	
+
 	
 }

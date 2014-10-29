@@ -20,7 +20,7 @@ public class Building extends AbstractBuilding {
 	
 	public void runElevators() {
 		for(int i = 0; i < numElevators; i++) {
-			myElevators.get(i).run();
+			myElevators.get(i).start();
 		}
 	}
 
@@ -49,7 +49,7 @@ public class Building extends AbstractBuilding {
 	}
 
 	public synchronized void requestElevator(Rider rider) {
-		
+		setGlobalNumPeopleWaiting(1);
 		int difference = rider.getCurrentLevel() - rider.getCurrentDestinationLevel();
 		myFloors.get(rider.getCurrentLevel()).incrementWaiter(difference);
 	
@@ -62,5 +62,6 @@ public class Building extends AbstractBuilding {
 	public synchronized int getMaxLevel() {
 		return myFloors.size() - 1;
 	}
+
 
 }

@@ -1,4 +1,5 @@
 package EventBarriers;
+import Elevators.AbstractElevator;
 import Elevators.Elevator;
 
 /**
@@ -13,14 +14,14 @@ import Elevators.Elevator;
 
 public class FloorEventBarrier extends EventBarrier {
 	
-	private Elevator currentElevator;
+	private AbstractElevator currentElevator;
 	
 	public FloorEventBarrier() {
 		super();
 		currentElevator = null;
 	}
 	
-	public synchronized void raise(Elevator el) {
+	public synchronized void raise(AbstractElevator el) {
 		currentElevator = el;
 		raise();
 		currentElevator = null;
@@ -42,7 +43,7 @@ public class FloorEventBarrier extends EventBarrier {
 		eventInProg = false;
 	}
 	
-	public synchronized Elevator getElevator() {
+	public synchronized AbstractElevator getElevator() {
 		return currentElevator;
 	}
 }

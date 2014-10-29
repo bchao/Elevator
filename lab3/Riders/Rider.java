@@ -79,7 +79,7 @@ public class Rider extends Thread{
 	private void printPushButton(int i) {
 		String s = "D";
 		if (i < 0) s = "U";
-		System.out.println(myName + " pushes " + s + " " + currentLevel);
+		System.out.println(myName + " pushes " + s + currentLevel);
 	}
 	
 	private void printEnterElevator(AbstractElevator e, Floor f) {

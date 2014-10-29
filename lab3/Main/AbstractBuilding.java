@@ -6,6 +6,7 @@ public abstract class AbstractBuilding {
 
 	protected int numFloors;
 	protected int numElevators;
+	protected int numPeopleWaitingOnFloors;
 	
 	/**
 	 * Other variables/data structures as needed goes here 
@@ -17,6 +18,7 @@ public abstract class AbstractBuilding {
 	public AbstractBuilding(int numFloors, int numElevators) {
 		this.numFloors = numFloors;
 		this.numElevators = numElevators;
+		numPeopleWaitingOnFloors = 0;
 	}
 
 	/**
@@ -40,4 +42,12 @@ public abstract class AbstractBuilding {
 	public abstract AbstractElevator CallDown(int fromFloor); 
     
 	/* Other methods as needed goes here */
+	
+	public synchronized void setGlobalNumPeopleWaiting(int i) {
+		numPeopleWaitingOnFloors += i;
+	}
+	
+	public synchronized boolean peopleWaiting() {
+		return numPeopleWaitingOnFloors != 0;
+	}
 }

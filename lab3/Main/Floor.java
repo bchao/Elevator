@@ -10,8 +10,8 @@ public class Floor {
 	private int floorID;
 	private String floorName;
 	
-	private EventBarrier myUpEventBarrier;
-	private EventBarrier myDownEventBarrier;
+	private FloorEventBarrier myUpEventBarrier;
+	private FloorEventBarrier myDownEventBarrier;
 	
 	public Floor(int id) {
 		myUpEventBarrier = new FloorEventBarrier();
@@ -45,7 +45,7 @@ public class Floor {
 		return false;
 	}
 
-	public EventBarrier getEventBarrier(Direction myDir) {
+	public FloorEventBarrier getEventBarrier(Direction myDir) {
 		
 		switch (myDir) {
 		case UP:
