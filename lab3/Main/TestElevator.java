@@ -43,13 +43,13 @@ public class TestElevator {
 
 	private void testPartOne() {
 		Rider Peter = new Rider(0, myBuilding, 2);
-		Peter.setDestination(3);
+		Peter.addDestination(3);
 		Rider Parker = new Rider(1, myBuilding, 2);
-		Parker.setDestination(5);
+		Parker.addDestination(5);
 		Rider Brett = new Rider(2, myBuilding, 5);
-		Brett.setDestination(7);
+		Brett.addDestination(7);
 		Rider Brandon = new Rider(3, myBuilding, 4);
-		Brandon.setDestination(7);
+		Brandon.addDestination(7);
 		
 		Peter.start();
 		Brett.start();
@@ -60,13 +60,13 @@ public class TestElevator {
 	
 	private void testPartTwo() {
 		Rider Peter = new Rider(0, myBuilding, 2);
-		Peter.setDestination(3);
+		Peter.addDestination(3);
 		Rider Parker = new Rider(1, myBuilding, 2);
-		Parker.setDestination(5);
+		Parker.addDestination(5);
 		Rider Brett = new Rider(2, myBuilding, 2);
-		Brett.setDestination(7);
+		Brett.addDestination(7);
 		Rider Brandon = new Rider(3, myBuilding, 2);
-		Brandon.setDestination(7);
+		Brandon.addDestination(7);
 		
 		Peter.start();
 		Brett.start();

@@ -40,7 +40,7 @@ public class Rider extends Thread{
 		myName = "R" + id;
 	}
 
-	public void setDestination(int n) {
+	public void addDestination(int n) {
 		//destinationLevel = n;
 		myDestinations.add(n);
 	}
