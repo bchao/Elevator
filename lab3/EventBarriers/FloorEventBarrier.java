@@ -27,7 +27,7 @@ public class FloorEventBarrier extends EventBarrier {
 		currentElevator = el;
 		
 		elevatorSpace = el.getMaxOccupancy() - el.getNumOccupants();
-		raise();
+		raise();		
 		currentElevator = null;
 	}
 	
@@ -54,5 +54,9 @@ public class FloorEventBarrier extends EventBarrier {
 	
 	public boolean hasRoom() {
 		return elevatorSpace > 0;
+	}
+
+	public void decrementNumThread() {
+		numUnfinishedThreads--;
 	}
 }

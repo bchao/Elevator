@@ -16,6 +16,7 @@ public class Rider extends Thread{
 	private InfiniteElevator myElevator;
 	private int myId;
 	private String myName;
+	private int waitNum = 0;
 
 	public Rider(int id, Building b, int floor) {
 		myBarrier = null;
@@ -41,22 +42,24 @@ public class Rider extends Thread{
 		printPushButton(currentLevel - destinationLevel);
 		
 		while (!gotOn) {
+			
 			myEventBarrier.arrive(); // wait for elevator to arrive
 			// get in elevator and do shit
 			myElevator = myEventBarrier.getElevator();
-
-
+			
+			//System.out.println(myEventBarrier.);
+			
 			if (myElevator.Enter()) {
 				gotOn = true;
 				int difference = currentLevel - destinationLevel;
 				myBuilding.getFloor(currentLevel).decrementWaiter(difference);
 
-				//System.out.println("SDFSDFSDF");
-
 				printEnterElevator(myElevator, currentFloor);
-
+				
 				myElevator.RequestFloor(destinationLevel);
+				
 				myEventBarrier.complete();	// signal to event barrier for up/down on the floor
+
 				myElevator.getElevatorWaitingBarrier(destinationLevel).arrive(); // wait inside
 
 				printExitElevator(myElevator, myBuilding.getFloor(destinationLevel));
@@ -65,11 +68,15 @@ public class Rider extends Thread{
 				myElevator.getElevatorWaitingBarrier(destinationLevel).complete(); // signal get out
 				currentLevel = destinationLevel; // update riders location
 
-
+				myElevator = null; // now doesn't have an elevator
 			}
-			if (!gotOn) printDidNotGetOn(myElevator, currentFloor);
-			myElevator = null; // now doesn't have an elevator
-			myBarrier = null; // now doesn't have a wait barrier
+			
+			if (!gotOn) {
+				myEventBarrier.decrementNumThread();
+				printDidNotGetOn(myElevator, currentFloor);
+				waitNum++;
+			}
+
 		}
 
 		// **** IMPLEMENT THE LOOP FOR FILE READING NOW ****
