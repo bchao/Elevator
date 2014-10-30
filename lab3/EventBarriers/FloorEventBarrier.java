@@ -28,7 +28,6 @@ public class FloorEventBarrier extends EventBarrier {
 		currentElevator = el;
 		elevatorSpace = el.getMaxOccupancy() - el.getNumOccupants();
 		raise();		
-		currentElevator = null;
 		elevatorComing = false;
 	}
 	
@@ -44,9 +43,10 @@ public class FloorEventBarrier extends EventBarrier {
 				e.printStackTrace();
 			}
 		}
-
-		notifyAll();
+		
 		eventInProg = false;
+		notifyAll();
+		//currentElevator = null;
 	}
 	
 	public synchronized InfiniteElevator getElevator() {

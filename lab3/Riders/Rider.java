@@ -65,7 +65,7 @@ public class Rider extends Thread{
 
 
 			while (!gotOn) {
-
+				
 				myEventBarrier.arrive(); // wait for elevator to arrive
 				// get in elevator and do shit
 				myElevator = myEventBarrier.getElevator();
