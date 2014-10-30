@@ -109,6 +109,8 @@ public class Rider extends Thread{
 			// **** IMPLEMENT THE LOOP FOR FILE READING NOW ****
 
 		}
+		
+		Parser.writer.close();
 	}
 
 

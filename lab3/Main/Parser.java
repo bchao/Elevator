@@ -47,14 +47,14 @@ public class Parser {
 			
 			int[] riderAttributes = {startingFloor, destinationFloor};
 			
-			if(riderMap.containsKey(riderNumber)) {
+			if(!riderMap.containsKey(riderNumber)) {
 				ArrayList<int[]> newList = new ArrayList<int[]>();
 				newList.add(riderAttributes);
 				riderMap.put(riderNumber, newList);
 			}
 			else {
 				riderMap.get(riderNumber).add(riderAttributes);
-			}			
+			}
 		}		
 	}
 	
