@@ -1,4 +1,6 @@
 package Riders;
+import java.util.List;
+
 import Buildings.Building;
 import Elevators.AbstractElevator;
 import Elevators.InfiniteElevator;
@@ -17,6 +19,17 @@ public class Rider extends Thread{
 	private int myId;
 	private String myName;
 	private int waitNum = 0;
+	private List<Integer> myDestinations;
+
+	public Rider(int id, Building b, int floor, List<Integer> d) {
+		myBarrier = null;
+		currentLevel = floor;
+		myBuilding = b;
+		myElevator = null;
+		myId = id;
+		myName = "R" + id;
+		myDestinations = d;	
+	}
 
 	public Rider(int id, Building b, int floor) {
 		myBarrier = null;
@@ -28,60 +41,63 @@ public class Rider extends Thread{
 	}
 
 	public void setDestination(int n) {
-		destinationLevel = n;
+		//destinationLevel = n;
+		myDestinations.add(n);
 	}
 
 	public void run() {
-
-		boolean gotOn = false;
-		Floor currentFloor = myBuilding.getFloor(currentLevel);
-		myBuilding.requestElevator(this);
-		FloorEventBarrier myEventBarrier = 
-				(FloorEventBarrier) currentFloor.getEventBarrier(currentLevel - destinationLevel);
-
-		printPushButton(currentLevel - destinationLevel);
-		
-		while (!gotOn) {
+		for (int i = 0; i < myDestinations.size(); i++) {
+			destinationLevel = myDestinations.get(i);
 			
-			myEventBarrier.arrive(); // wait for elevator to arrive
-			// get in elevator and do shit
-			myElevator = myEventBarrier.getElevator();
-			
-			//System.out.println(myEventBarrier.);
-			
-			if (myElevator.Enter()) {
-				gotOn = true;
-				int difference = currentLevel - destinationLevel;
-				myBuilding.getFloor(currentLevel).decrementWaiter(difference);
+			boolean gotOn = false;
+			Floor currentFloor = myBuilding.getFloor(currentLevel);
+			myBuilding.requestElevator(this);
+			FloorEventBarrier myEventBarrier = 
+					(FloorEventBarrier) currentFloor.getEventBarrier(currentLevel - destinationLevel);
 
-				printEnterElevator(myElevator, currentFloor);
-				
-				myElevator.RequestFloor(destinationLevel);
-				
-				myEventBarrier.complete();	// signal to event barrier for up/down on the floor
+			printPushButton(currentLevel - destinationLevel);
 
-				myElevator.getElevatorWaitingBarrier(destinationLevel).arrive(); // wait inside
+			while (!gotOn) {
 
-				printExitElevator(myElevator, myBuilding.getFloor(destinationLevel));
+				myEventBarrier.arrive(); // wait for elevator to arrive
+				// get in elevator and do shit
+				myElevator = myEventBarrier.getElevator();
 
-				myElevator.Exit(); // get out
-				myElevator.getElevatorWaitingBarrier(destinationLevel).complete(); // signal get out
-				currentLevel = destinationLevel; // update riders location
+				//System.out.println(myEventBarrier.);
 
-				myElevator = null; // now doesn't have an elevator
+				if (myElevator.Enter()) {
+					gotOn = true;
+					int difference = currentLevel - destinationLevel;
+					myBuilding.getFloor(currentLevel).decrementWaiter(difference);
+
+					printEnterElevator(myElevator, currentFloor);
+
+					myElevator.RequestFloor(destinationLevel);
+
+					myEventBarrier.complete();	// signal to event barrier for up/down on the floor
+
+					myElevator.getElevatorWaitingBarrier(destinationLevel).arrive(); // wait inside
+
+					printExitElevator(myElevator, myBuilding.getFloor(destinationLevel));
+
+					myElevator.Exit(); // get out
+					myElevator.getElevatorWaitingBarrier(destinationLevel).complete(); // signal get out
+					currentLevel = destinationLevel; // update riders location
+
+					myElevator = null; // now doesn't have an elevator
+				}
+
+				if (!gotOn) {
+					myEventBarrier.decrementNumThread();
+					printDidNotGetOn(myElevator, currentFloor);
+					waitNum++;
+				}
+
 			}
-			
-			if (!gotOn) {
-				myEventBarrier.decrementNumThread();
-				printDidNotGetOn(myElevator, currentFloor);
-				waitNum++;
-			}
+
+			// **** IMPLEMENT THE LOOP FOR FILE READING NOW ****
 
 		}
-
-		// **** IMPLEMENT THE LOOP FOR FILE READING NOW ****
-
-
 	}
 
 
@@ -111,7 +127,7 @@ public class Rider extends Thread{
 	private void printExitElevator(InfiniteElevator e, Floor f) {
 		System.out.println(myName + " exits " + e.getStringName() + " on " + f.getName());
 	}
-	
+
 	private void printDidNotGetOn(InfiniteElevator e, Floor f) {
 		System.out.println(myName + " did not get on " + e.getStringName() + " on " + f.getName());
 	}
