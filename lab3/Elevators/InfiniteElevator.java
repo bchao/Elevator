@@ -120,6 +120,7 @@ public class InfiniteElevator extends AbstractElevator {
 	
 	public synchronized boolean Enter() {
 		if (!isFull()) {
+			myBuilding.setGlobalNumPeopleWaiting(-1);
 			numOccupants++;
 			return true;
 		}
@@ -129,7 +130,6 @@ public class InfiniteElevator extends AbstractElevator {
 
 	public synchronized void Exit() {
 		numOccupants--;
-		myBuilding.setGlobalNumPeopleWaiting(-1);
 	}
 	
 
