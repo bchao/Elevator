@@ -131,12 +131,12 @@ public class Rider extends Thread{
 	private void printPushButton(int i) {
 		String s = "D";
 		if (i < 0) s = "U";
-		Parser.writer.println(myName + " pushes " + s + currentLevel);
+		Parser.writer.println(myName + " pushes " + s + (currentLevel + 1));
 	}
 
 	private void printEnterElevator(InfiniteElevator e, Floor f) {
 		Parser.writer.println(myName + " enters " + e.getStringName() + " on " + f.getName());
-		Parser.writer.println(myName + " pushes " + e.getStringName() + "B" + destinationLevel);
+		Parser.writer.println(myName + " pushes " + e.getStringName() + "B" + (destinationLevel + 1));
 	}
 
 	private void printExitElevator(InfiniteElevator e, Floor f) {

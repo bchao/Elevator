@@ -30,8 +30,8 @@ public class TestElevator {
 //		testPartTwo();
 //		testPartTwoB();
 //		testPartOneMultipleDestinations();
-//		testPartTwoMultipleDestinations();
-		testPartTwoFinalTest();
+		testPartTwoMultipleDestinations();
+//		testPartTwoFinalTest();
 		
 		myBuilding.runElevators();
 		 

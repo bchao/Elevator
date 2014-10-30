@@ -2,6 +2,7 @@ package Main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -15,7 +16,8 @@ public class Parser {
 	private static int numElevators;
 	private static int numRiders;
 	private static int maxCap;
-	private static HashMap<Integer, ArrayList<int[]>> riderMap; 	
+	private static HashMap<Integer, ArrayList<Integer>> riderMap;	
+	private static int[] riderStarts;
 	public static PrintWriter writer;
 	
 	public Parser() {
@@ -26,7 +28,7 @@ public class Parser {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		//openFile();
+		openFile();
 	}
 	
 	private static void build(Scanner s){
@@ -36,30 +38,35 @@ public class Parser {
 		numElevators = Integer.parseInt(initParam[1]);
 		numRiders = Integer.parseInt(initParam[2]);
 		maxCap = Integer.parseInt(initParam[3]);
-
-		riderMap = new HashMap<Integer, ArrayList<int[]>>();
+		
+		riderStarts = new int[numRiders];
+		
+		riderMap = new HashMap<Integer, ArrayList<Integer>>();
 		
 		while(s.hasNextLine()) {
 			String[] params = s.nextLine().split(" ");
-			int riderNumber = Integer.parseInt(params[0]);
-			int startingFloor = Integer.parseInt(params[1]);
-			int destinationFloor = Integer.parseInt(params[2]);
+			int riderNumber = Integer.parseInt(params[0]) - 1;
+			int startingFloor = Integer.parseInt(params[1]) - 1;
+			int destinationFloor = Integer.parseInt(params[2]) - 1;
 			
 			int[] riderAttributes = {startingFloor, destinationFloor};
 			
-			if(!riderMap.containsKey(riderNumber)) {
-				ArrayList<int[]> newList = new ArrayList<int[]>();
-				newList.add(riderAttributes);
-				riderMap.put(riderNumber, newList);
+			riderStarts[riderNumber] = startingFloor;
+			
+			if(riderMap.get(riderNumber) == null) {
+				ArrayList<Integer> temp = new ArrayList<Integer>();
+				temp.add(destinationFloor);
+				riderMap.put(riderNumber, temp);
 			}
 			else {
-				riderMap.get(riderNumber).add(riderAttributes);
-			}
+				riderMap.get(riderNumber).add(destinationFloor);
+			}			
 		}		
 	}
 	
 	private static void openFile() {
-		JFileChooser fileChooser = new JFileChooser(".");
+		String currentDir = System.getProperty("user.dir") + "\\elevator\\lab3\\ElevatorTests";
+		JFileChooser fileChooser = new JFileChooser(currentDir);
 		int fileSelect = JFileChooser.ERROR_OPTION;
 		
 		while(fileSelect == JFileChooser.ERROR_OPTION) {
@@ -94,8 +101,14 @@ public class Parser {
 	public int getCapacity() {
 		return maxCap;
 	}
-	
-	public HashMap<Integer, ArrayList<int[]>> getRiderMap() {
+
+	public HashMap<Integer, ArrayList<Integer>> getRiderMap() {
 		return riderMap;
 	}
+	
+	public int[] getRiderStarts() {
+		return riderStarts;
+	}
+
+	
 }

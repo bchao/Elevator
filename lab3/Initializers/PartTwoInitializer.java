@@ -1,22 +1,25 @@
 package Initializers;
 
+import java.util.ArrayList;
+
 import Buildings.PartTwoBuilding;
 import EventBarriers.EventBarrier;
 import Main.Parser;
+import Riders.Rider;
 
 public class PartTwoInitializer extends AbstractInitializer {
 
 	@Override
-	public void beginSimulation(String filename) {
+	public void beginSimulation() {
 		p = new Parser();
-		
+		EventBarrier b = new EventBarrier();
 		myBuilding = new PartTwoBuilding(p.getFloors(), p.getElevators(), p.getCapacity());
+		myBuilding.setEvBar(b);
 		
-		createRiders(p.getRiderMap());
+		createRiders(p.getRiderStarts(), p.getRiderMap());
 		startRiders();
 		myBuilding.runElevators();
 		
-		EventBarrier b = new EventBarrier();
 		b.arrive();
 	}
 

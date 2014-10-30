@@ -2,15 +2,17 @@ package Main;
 
 import java.io.PrintWriter;
 
+import Initializers.*;
+
 public class ElevatorMain {
 	
-	public static void main(String args[]) {
-		Parser parser = new Parser();
-		
+	public static void main(String args[]) {		
 		// Class called Initializer (parent class)
 		
 		if(args.length == 0) {
-			// No options specified; make the default as the part 3 elevator submission
+			System.out.println("Problem 2 Part 3");
+			PartThreeInitializer p2p3 = new PartThreeInitializer();
+			p2p3.beginSimulation();
 		} else if(args.length > 2) {
 			System.out.println("Too many arguments");
 		} else {
