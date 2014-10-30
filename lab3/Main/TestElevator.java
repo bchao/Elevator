@@ -19,7 +19,6 @@ public class TestElevator {
 
 //		myBuilding = new PartOneBuilding(10, 1, 10);
 //		myBuilding = new PartTwoBuilding(10, 1, 3);
-//		myBuilding = new PartTwoBuilding(10, 2, 3);
 		myBuilding = new PartThreeBuilding(10, 2, 3);
 		
 		myBuilding.setEvBar(b);
@@ -30,8 +29,8 @@ public class TestElevator {
 //		testPartTwo();
 //		testPartTwoB();
 //		testPartOneMultipleDestinations();
-//		testPartTwoMultipleDestinations();
-		testPartTwoFinalTest();
+		testPartTwoMultipleDestinations();
+//		testPartTwoFinalTest();
 		
 		myBuilding.runElevators();
 		 

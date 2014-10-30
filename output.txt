@@ -3,110 +3,66 @@ R2 pushes U2
 R1 pushes U2
 R3 pushes U2
 R4 pushes U2
-R5 pushes U5
-E0 moves UP to F1
-E1 moves UP to F2
+E1 moves UP to F3
+E1 on F3 opens
+R2 enters E1 on F3
+R3 enters E1 on F3
+R2 pushes E1B7
+R3 pushes E1B7
+R0 enters E1 on F3
+R0 pushes E1B3
+R1 did not get on E1 on F3
+R4 did not get on E1 on F3
+E1 on F3 closes
+E1 moves UP to F4
+E1 on F4 opens
+R0 exits E1 on F4
+E1 on F4 closes
+E1 moves UP to F5
+E1 moves UP to F6
+E1 moves UP to F7
+E1 moves UP to F8
+E1 on F8 opens
+R3 exits E1 on F8
+R2 exits E1 on F8
+R2 pushes D7
+E1 on F8 closes
+E1 moves UP to F9
+E1 moves UP to F10
 E0 moves UP to F2
 E0 moves UP to F3
-E1 on F2 opens
+E0 on F3 opens
+R1 enters E0 on F3
+R4 enters E0 on F3
+R1 pushes E0B5
+R4 pushes E0B4
+E0 on F3 closes
 E0 moves UP to F4
 E0 moves UP to F5
 E0 on F5 opens
-R0 enters E1 on F2
-R2 enters E1 on F2
-R4 did not get on E1 on F2
-R2 pushes E1B7
-R1 enters E1 on F2
-R0 pushes E1B8
-R1 pushes E1B6
-R5 enters E0 on F5
-R5 pushes E0B7
-R3 did not get on E1 on F2
+R4 exits E0 on F5
 E0 on F5 closes
-E1 on F2 closes
 E0 moves UP to F6
-E1 moves UP to F3
-E1 moves UP to F4
+E0 on F6 opens
+R1 exits E0 on F6
+E0 on F6 closes
 E0 moves UP to F7
-E1 moves UP to F5
-E0 on F7 opens
-E1 moves UP to F6
-E1 on F6 opens
-R5 exits E0 on F7
-R1 exits E1 on F6
-E0 on F7 closes
-E1 on F6 closes
 E0 moves UP to F8
-E1 moves UP to F7
 E0 moves UP to F9
-E1 on F7 opens
-R2 exits E1 on F7
-E0 moves DOWN to F8
-R2 pushes D7
-E0 moves DOWN to F7
-E1 on F7 closes
-E0 on F7 opens
-E1 moves UP to F8
-E1 on F8 opens
-R2 enters E0 on F7
-R2 pushes E0B1
-R0 exits E1 on F8
-E0 on F7 closes
-E1 on F8 closes
-E1 moves UP to F9
-E0 moves DOWN to F6
+E0 moves UP to F10
+E1 moves DOWN to F9
 E1 moves DOWN to F8
-E0 moves DOWN to F5
-E1 moves DOWN to F7
-E0 moves DOWN to F4
-E1 moves DOWN to F6
-E0 moves DOWN to F3
-E1 moves DOWN to F5
-E0 moves DOWN to F2
-E1 moves DOWN to F4
-E0 moves DOWN to F1
-E1 moves DOWN to F3
-E0 on F1 opens
-E1 moves DOWN to F2
-R2 exits E0 on F1
-E1 moves DOWN to F1
-E1 moves DOWN to F0
-E0 on F1 closes
-E0 moves DOWN to F0
-E1 moves UP to F1
-E0 moves UP to F1
-E1 moves UP to F2
-E0 moves UP to F2
-E1 on F2 opens
-E0 moves UP to F3
-E0 moves UP to F4
-R3 enters E1 on F2
-R4 enters E1 on F2
-R3 pushes E1B7
-E0 moves UP to F5
-R4 pushes E1B8
-E0 moves UP to F6
-E1 on F2 closes
-E0 moves UP to F7
-E1 moves UP to F3
-E0 moves UP to F8
-E1 moves UP to F4
-E0 moves UP to F9
-E1 moves UP to F5
-E0 moves DOWN to F8
-E1 moves UP to F6
-E1 moves UP to F7
-E1 on F7 opens
-E0 moves DOWN to F7
-R3 exits E1 on F7
-E0 moves DOWN to F6
-E0 moves DOWN to F5
-E1 on F7 closes
-E0 moves DOWN to F4
-E1 moves UP to F8
-E0 moves DOWN to F3
 E1 on F8 opens
-R4 exits E1 on F8
-E0 moves DOWN to F2
+R2 enters E1 on F8
+R2 pushes E1B1
+E1 on F8 closes
+E1 moves DOWN to F7
+E1 moves DOWN to F6
+E1 moves DOWN to F5
+E1 moves DOWN to F4
+E1 moves DOWN to F3
+E1 moves DOWN to F2
+E1 on F2 opens
+R2 exits E1 on F2
 
 FINISH SIMULATION

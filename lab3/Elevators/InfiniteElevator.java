@@ -84,12 +84,27 @@ public class InfiniteElevator extends AbstractElevator {
 
 		// was synch
 	private void changeLevel() {
-		if (currentLevel == myBuilding.getMaxLevel()) myDir = Direction.DOWN;
-		if (currentLevel == 0) myDir = Direction.UP;
+		if (currentLevel == myBuilding.getMaxLevel()) {
+			myDir = Direction.DOWN;
+			sleepThread();
+		}
+		if (currentLevel == 0) {
+			myDir = Direction.UP;
+			sleepThread();
+		}
 		
 		printMoveToNewLevel();
 		
 		currentLevel += myDir.getDir();
+	}
+
+	private void sleepThread() {
+		try {
+			Thread.sleep(10);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void OpenDoors() {
