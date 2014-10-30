@@ -169,5 +169,9 @@ public class InfiniteElevator extends AbstractElevator {
 	public String getStringName() {
 		return myName;
 	}
+	
+	public void setCurrentLevel(int level) {
+		currentLevel = level;
+	}
 
 }
