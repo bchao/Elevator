@@ -59,5 +59,9 @@ public class FloorEventBarrier extends EventBarrier {
 	public synchronized void decrementNumThread() {
 		numUnfinishedThreads--;
 	}
+
+	public synchronized void setElevator(InfiniteElevator e) {
+		currentElevator = e;
+	}
 	
 }

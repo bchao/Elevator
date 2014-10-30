@@ -26,7 +26,7 @@ public class Parser {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		openFile();
+		//openFile();
 	}
 	
 	private static void build(Scanner s){
