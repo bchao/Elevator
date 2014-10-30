@@ -16,7 +16,7 @@ public class Parser {
 	private static HashMap<Integer, ArrayList<int[]>> riderMap; 	
 	
 	public Parser() {
-
+		openFile();
 	}
 	
 	private static void build(Scanner s){
@@ -35,7 +35,7 @@ public class Parser {
 			int startingFloor = Integer.parseInt(params[1]);
 			int destinationFloor = Integer.parseInt(params[2]);
 			
-			int[] riderAttributes = {riderNumber, startingFloor, destinationFloor};
+			int[] riderAttributes = {startingFloor, destinationFloor};
 			
 			if(riderMap.containsKey(riderNumber)) {
 				ArrayList<int[]> newList = new ArrayList<int[]>();
@@ -48,7 +48,7 @@ public class Parser {
 		}		
 	}
 	
-	public static void openFile() {
+	private static void openFile() {
 		JFileChooser fileChooser = new JFileChooser(".");
 		int fileSelect = JFileChooser.ERROR_OPTION;
 		
