@@ -42,12 +42,18 @@ public class InfiniteElevator extends AbstractElevator {
 			
 			Floor currentFloor = myBuilding.getFloor(currentLevel);
 
-
-
-			if ((myDestinations.contains(currentLevel) || 
-					currentFloor.peopleWaiting(myDir)) && elevatorNotAlreadyThere(currentFloor)) {
-				VisitFloor(currentLevel);
+			if(elevatorNotAlreadyThere(currentFloor)){
+				if(myDestinations.contains(currentLevel) ||
+						currentFloor.peopleWaiting(myDir)) {
+					currentFloor.getEventBarrier(myDir).setElevatorComing(true);
+					VisitFloor(currentLevel);
+				}
 			}
+
+//			if ((myDestinations.contains(currentLevel) || 
+//					currentFloor.peopleWaiting(myDir)) && elevatorNotAlreadyThere(currentFloor)) {
+//				VisitFloor(currentLevel);
+//			}
 						
 			changeLevel();
 			
@@ -58,7 +64,7 @@ public class InfiniteElevator extends AbstractElevator {
 	}
 
 	private synchronized boolean elevatorNotAlreadyThere(Floor currentFloor) {
-		return currentFloor.getEventBarrier(myDir).getElevator() == null;		
+		return !currentFloor.getEventBarrier(myDir).isElevatorComing();
 	}
 
 	private synchronized void waitForRequests() {

@@ -17,20 +17,20 @@ public class TestElevator {
 		// CHOOSE WHICH TYPE
 		EventBarrier b = new EventBarrier();
 
-		myBuilding = new PartOneBuilding(10, 1, 10);
-		//myBuilding = new PartTwoBuilding(10, 1, 3);
-		//myBuilding = new PartTwoBuilding(10, 2, 3);
+//		myBuilding = new PartOneBuilding(10, 1, 10);
+//		myBuilding = new PartTwoBuilding(10, 1, 3);
+		myBuilding = new PartTwoBuilding(10, 2, 3);
 		
 		myBuilding.setEvBar(b);
 		  
 		Parser p = new Parser();
 		
-		testPartOne();
-		//testPartTwo();
-		//testPartTwoB();
-		//testPartOneMultipleDestinations();
+//		testPartOne();
+//		testPartTwo();
+//		testPartTwoB();
+//		testPartOneMultipleDestinations();
 		//testPartTwoMultipleDestinations();
-		//testPartTwoFinalTest();
+		testPartTwoFinalTest();
 		
 		myBuilding.runElevators();
 		 
