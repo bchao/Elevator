@@ -17,7 +17,6 @@ public class FloorEventBarrier extends EventBarrier {
 	
 	private InfiniteElevator currentElevator;
 	private boolean elevatorComing;
-	private int elevatorSpace = 0;
 	
 	public FloorEventBarrier() {
 		super();
@@ -26,7 +25,6 @@ public class FloorEventBarrier extends EventBarrier {
 	
 	public void raise(InfiniteElevator el) {
 		currentElevator = el;
-		elevatorSpace = el.getMaxOccupancy() - el.getNumOccupants();
 		raise();		
 		elevatorComing = false;
 	}
@@ -51,10 +49,6 @@ public class FloorEventBarrier extends EventBarrier {
 	
 	public synchronized InfiniteElevator getElevator() {
 		return currentElevator;
-	}
-	
-	public boolean hasRoom() {
-		return elevatorSpace > 0;
 	}
 	
 	public synchronized void setElevatorComing(boolean bool) {

@@ -5,10 +5,10 @@ R3 pushes U2
 R4 pushes U2
 E1 moves UP to F3
 E1 on F3 opens
-R2 enters E1 on F3
 R3 enters E1 on F3
-R2 pushes E1B7
+R2 enters E1 on F3
 R3 pushes E1B7
+R2 pushes E1B7
 R0 enters E1 on F3
 R0 pushes E1B3
 R1 did not get on E1 on F3
