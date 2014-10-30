@@ -7,6 +7,7 @@ import Buildings.Building;
 import EventBarriers.FloorEventBarrier;
 import Main.Direction;
 import Main.Floor;
+import Main.Parser;
 import Riders.Rider;
 
 /**
@@ -41,12 +42,18 @@ public class InfiniteElevator extends AbstractElevator {
 			
 			Floor currentFloor = myBuilding.getFloor(currentLevel);
 
-
-
-			if ((myDestinations.contains(currentLevel) || 
-					currentFloor.peopleWaiting(myDir)) && elevatorNotAlreadyThere(currentFloor)) {
-				VisitFloor(currentLevel);
+			if(elevatorNotAlreadyThere(currentFloor)){
+				if(myDestinations.contains(currentLevel) ||
+						currentFloor.peopleWaiting(myDir)) {
+					currentFloor.getEventBarrier(myDir).setElevatorComing(true);
+					VisitFloor(currentLevel);
+				}
 			}
+
+//			if ((myDestinations.contains(currentLevel) || 
+//					currentFloor.peopleWaiting(myDir)) && elevatorNotAlreadyThere(currentFloor)) {
+//				VisitFloor(currentLevel);
+//			}
 						
 			changeLevel();
 			
@@ -57,7 +64,7 @@ public class InfiniteElevator extends AbstractElevator {
 	}
 
 	private synchronized boolean elevatorNotAlreadyThere(Floor currentFloor) {
-		return currentFloor.getEventBarrier(myDir).getElevator() == null;		
+		return !currentFloor.getEventBarrier(myDir).isElevatorComing();
 	}
 
 	private synchronized void waitForRequests() {
@@ -138,17 +145,17 @@ public class InfiniteElevator extends AbstractElevator {
 	// ***** PRINT METHODS ****
 	
 	private void printDoorsOpen() {
-		System.out.println(myName + " on " + myBuilding.getFloor(currentLevel).getName() 
+		Parser.writer.println(myName + " on " + myBuilding.getFloor(currentLevel).getName() 
 							 + " opens");
 	}
 	
 	private void printDoorsClose() {
-		System.out.println(myName + " on " + myBuilding.getFloor(currentLevel).getName() 
+		Parser.writer.println(myName + " on " + myBuilding.getFloor(currentLevel).getName() 
 							 + " closes");
 	}
 	
 	private void printMoveToNewLevel() {
-		System.out.println(myName + " moves " + myDir + " to " + myBuilding.getFloor(currentLevel + myDir.getDir()).getName());
+		Parser.writer.println(myName + " moves " + myDir + " to " + myBuilding.getFloor(currentLevel + myDir.getDir()).getName());
 	}
 	
 	public int getMaxOccupancy() {
@@ -161,6 +168,10 @@ public class InfiniteElevator extends AbstractElevator {
 	
 	public String getStringName() {
 		return myName;
+	}
+	
+	public void setCurrentLevel(int level) {
+		currentLevel = level;
 	}
 
 }

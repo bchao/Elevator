@@ -1,0 +1,34 @@
+R0 pushes U2
+R2 pushes U5
+R1 pushes U2
+R3 pushes U4
+E0 moves UP to F1
+E0 moves UP to F2
+E0 on F2 opens
+R1 enters E0 on F2
+R0 enters E0 on F2
+R1 pushes E0B5
+R0 pushes E0B3
+E0 on F2 closes
+E0 moves UP to F3
+E0 on F3 opens
+R0 exits E0 on F3
+E0 on F3 closes
+E0 moves UP to F4
+E0 on F4 opens
+R3 enters E0 on F4
+R3 pushes E0B7
+E0 on F4 closes
+E0 moves UP to F5
+E0 on F5 opens
+R1 exits E0 on F5
+R2 enters E0 on F5
+R2 pushes E0B7
+E0 on F5 closes
+E0 moves UP to F6
+E0 moves UP to F7
+E0 on F7 opens
+R3 exits E0 on F7
+R2 exits E0 on F7
+
+FINISH SIMULATION

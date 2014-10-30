@@ -3,6 +3,7 @@ package Buildings;
 import java.util.*;
 
 import Elevators.*;
+import EventBarriers.EventBarrier;
 import Main.Floor;
 import Riders.*;
 
@@ -10,6 +11,8 @@ public class Building extends AbstractBuilding {
 	
 	protected List<Floor> myFloors;
 	protected List<AbstractElevator> myElevators;
+	protected int numberOfTripsToService;
+	protected EventBarrier finalEventBarrier = null;
 	
 	public Building(int numFloors, int numElevators, int maxOccupancy) {
 		super(numFloors, numElevators);
@@ -51,9 +54,22 @@ public class Building extends AbstractBuilding {
 	public synchronized Floor getFloor(int currentLevel) {
 		return myFloors.get(currentLevel);
 	}
-	
+	 
 	public synchronized int getMaxLevel() {
 		return myFloors.size() - 1;
+	}
+	
+	public synchronized void tripFinished() {
+		--numberOfTripsToService;
+		if (numberOfTripsToService == 0) finalEventBarrier.raise();
+	}
+	
+	public void setNumberOfTrips(int n) {
+		numberOfTripsToService = n;
+	}
+	
+	public void setEvBar(EventBarrier b) {
+		finalEventBarrier = b;
 	}
 
 

@@ -1,9 +1,11 @@
 package Main;
 
+import java.io.PrintWriter;
+
 public class ElevatorMain {
 	
 	public static void main(String args[]) {
-
+		Parser parser = new Parser();
 		
 		// Class called Initializer (parent class)
 		
