@@ -97,7 +97,7 @@ public class Rider extends Thread{
 					//myElevator = null; // now doesn't have an elevator
 				}
 
-				if (!gotOn) {
+				 if (!gotOn) {
 					myEventBarrier.decrementNumThread();
 					if (waitNum == 0) printDidNotGetOn(myElevator, currentFloor);
 					waitNum++;
@@ -110,7 +110,7 @@ public class Rider extends Thread{
 
 		}
 		
-		Parser.writer.close();
+//		Parser.writer.close();
 	}
 
 

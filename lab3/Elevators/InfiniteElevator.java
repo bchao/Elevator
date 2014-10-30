@@ -123,6 +123,7 @@ public class InfiniteElevator extends AbstractElevator {
 
 	public synchronized void Exit() {
 		numOccupants--;
+		myBuilding.tripFinished();
 		myBuilding.setGlobalNumPeopleWaiting(-1);
 	}
 	
