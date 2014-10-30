@@ -18,8 +18,8 @@ public class Floor {
 		myDownEventBarrier = new FloorEventBarrier();
 		numUpWaiters = 0;
 		numDownWaiters = 0;
-		floorID = id;
-		floorName = "F" + id;
+		floorID = id+1;
+		floorName = "F" + floorID;
 	}
 
 	public synchronized void incrementWaiter(int difference) { // difference = currentFloor - destination
