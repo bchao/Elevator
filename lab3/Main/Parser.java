@@ -1,48 +1,51 @@
 package Main;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-import Buildings.*;
-import Riders.Rider;
-
 public class Parser {
+	private static int numFloors;
+	private static int numElevators;
+	private static int numRiders;
+	private static int maxCap;
+	private static HashMap<Integer, ArrayList<int[]>> riderMap; 	
+	
 	public Parser() {
 
 	}
 	
 	private static void build(Scanner s){
 		String[] initParam = s.nextLine().split(" ");
-		ArrayList<Rider> ridersList = new ArrayList<Rider>();
 		
-		int F = Integer.parseInt(initParam[0]);
-		int E = Integer.parseInt(initParam[1]);
-		int R = Integer.parseInt(initParam[2]);
-		int N = Integer.parseInt(initParam[3]);
-		
-		Building building = new PartTwoBuilding(F, E, N);
-//		Building building = new PartOneBuilding(F, E, N);
+		numFloors = Integer.parseInt(initParam[0]);
+		numElevators = Integer.parseInt(initParam[1]);
+		numRiders = Integer.parseInt(initParam[2]);
+		maxCap = Integer.parseInt(initParam[3]);
 
+		riderMap = new HashMap<Integer, ArrayList<int[]>>();
+		
 		while(s.hasNextLine()) {
 			String[] params = s.nextLine().split(" ");
 			int riderNumber = Integer.parseInt(params[0]);
 			int startingFloor = Integer.parseInt(params[1]);
 			int destinationFloor = Integer.parseInt(params[2]);
 			
-			Rider r = new Rider(riderNumber, building, startingFloor);
-			r.setDestination(destinationFloor);
-			ridersList.add(r);
-		}
-		
-		for(Rider r : ridersList) {
-			r.start();
-		}
-		
-		building.runElevators();
+			int[] riderAttributes = {riderNumber, startingFloor, destinationFloor};
+			
+			if(riderMap.containsKey(riderNumber)) {
+				ArrayList<int[]> newList = new ArrayList<int[]>();
+				newList.add(riderAttributes);
+				riderMap.put(riderNumber, newList);
+			}
+			else {
+				riderMap.get(riderNumber).add(riderAttributes);
+			}			
+		}		
 	}
 	
 	public static void openFile() {
@@ -63,11 +66,26 @@ public class Parser {
 							JOptionPane.ERROR_MESSAGE);
 				}
 			}
-		}
+		}		
 	}
 	
-	public static void main(String[] args) {
-		Parser parser = new Parser();
-		parser.openFile();
+	public int getFloors() {
+		return numFloors;
+	}
+	
+	public int getElevators() {
+		return numElevators;
+	}
+	
+	public int getRiders() {
+		return numRiders;
+	}
+	
+	public int getCapacity() {
+		return maxCap;
+	}
+	
+	public HashMap<Integer, ArrayList<int[]>> getRiderMap() {
+		return riderMap;
 	}
 }
