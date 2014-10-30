@@ -15,12 +15,15 @@ public class TestElevator {
 	@Test
 	public void testOneElevator() {
 		// CHOOSE WHICH TYPE
-		myBuilding = new PartOneBuilding(10, 1, 10);
-		//myBuilding = new PartTwoBuilding(10, 1, 3);
+		//myBuilding = new PartOneBuilding(10, 1, 10);
+		myBuilding = new PartTwoBuilding(10, 1, 3);
 		
 		//testPartOne();
 		//testPartTwo();
-		testPartOneMultipleDestinations();
+		//testPartTwoB();
+		//testPartOneMultipleDestinations();
+		//testPartTwoMultipleDestinations();
+		testPartTwoFinalTest();
 		
 		myBuilding.runElevators();
 		
@@ -74,6 +77,71 @@ public class TestElevator {
 		Brandon.start();
 	}
 
+	private void testPartTwoB() {
+		
+		Rider Peter = new Rider(0, myBuilding, 2);
+		Peter.setDestination(3);
+		Rider Parker = new Rider(1, myBuilding, 2);
+		Parker.setDestination(5);
+		Rider Brett = new Rider(2, myBuilding, 2);
+		Brett.setDestination(7);
+		Rider Brandon = new Rider(3, myBuilding, 2);
+		Brandon.setDestination(7);
+		Rider Kyle = new Rider(4, myBuilding, 2);
+		Kyle.setDestination(4);
+		
+		Peter.start();
+		Brett.start();
+		Parker.start();
+		Brandon.start();
+		Kyle.start();
+	}
+	
+	private void testPartTwoMultipleDestinations() {
+		
+		Rider Peter = new Rider(0, myBuilding, 2);
+		Peter.setDestination(3);
+		Rider Parker = new Rider(1, myBuilding, 2);
+		Parker.setDestination(5);
+		Rider Brett = new Rider(2, myBuilding, 2);
+		Brett.setDestination(7);
+		Brett.setDestination(1);
+		Rider Brandon = new Rider(3, myBuilding, 2);
+		Brandon.setDestination(7);
+		Rider Kyle = new Rider(4, myBuilding, 2);
+		Kyle.setDestination(4);
+		
+		Peter.start();
+		Brett.start();
+		Parker.start();
+		Brandon.start();
+		Kyle.start();
+	}
+	
+	private void testPartTwoFinalTest() {
+		Rider Peter = new Rider(0, myBuilding, 2);
+		Peter.setDestination(8);
+		Rider Parker = new Rider(1, myBuilding, 2);
+		Parker.setDestination(6);
+		Rider Brett = new Rider(2, myBuilding, 2);
+		Brett.setDestination(7);
+		Brett.setDestination(1);
+		Rider Brandon = new Rider(3, myBuilding, 2);
+		Brandon.setDestination(7);
+		Rider Kyle = new Rider(4, myBuilding, 2);
+		Kyle.setDestination(8);
+		
+		Rider Josh = new Rider(5, myBuilding, 5);
+		Josh.setDestination(7);
+		
+		Peter.start();
+		Brett.start();
+		Parker.start();
+		Brandon.start();
+		Kyle.start();
+		Josh.start();
+	}
+	
 	private void sleepThread() {
 		try {
 			Thread.sleep(100);
