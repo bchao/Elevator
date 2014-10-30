@@ -14,7 +14,6 @@ public class TestElevator {
 	Building myBuilding;
 	@Test
 	public void testOneElevator() {
-		
 		// CHOOSE WHICH TYPE
 		myBuilding = new PartOneBuilding(10, 1, 10);
 		//myBuilding = new PartTwoBuilding(10, 1, 3);
@@ -22,7 +21,6 @@ public class TestElevator {
 		//testPartOne();
 		//testPartTwo();
 		testPartOneMultipleDestinations();
-		
 		
 		myBuilding.runElevators();
 		
@@ -33,7 +31,6 @@ public class TestElevator {
 		assertTrue(myBuilding.getFloor(0).peopleWaiting(Direction.UP));
 		assertTrue(myBuilding.getFloor(9).peopleWaiting(Direction.UP));
 	}
-
 
 	private void testPartOneMultipleDestinations() {
 		List<Integer> d = new ArrayList<Integer>();
