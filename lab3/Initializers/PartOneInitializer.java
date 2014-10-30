@@ -3,7 +3,6 @@ package Initializers;
 import Buildings.PartOneBuilding;
 import EventBarriers.EventBarrier;
 import Main.Parser;
-import Riders.Rider;
 
 public class PartOneInitializer extends AbstractInitializer{
 
@@ -14,9 +13,7 @@ public class PartOneInitializer extends AbstractInitializer{
 		myBuilding = new PartOneBuilding(p.getFloors(), p.getElevators(), p.getCapacity());
 
 		createRiders(p.getRiderMap());
-		
 		startRiders();
-		
 		myBuilding.runElevators();
 		
 		EventBarrier b = new EventBarrier();
