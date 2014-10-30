@@ -1,4 +1,5 @@
 package Riders;
+import java.util.ArrayList;
 import java.util.List;
 
 import Buildings.Building;
@@ -38,6 +39,7 @@ public class Rider extends Thread{
 		myElevator = null;
 		myId = id;
 		myName = "R" + id;
+		myDestinations = new ArrayList<Integer>();
 	}
 
 	public void setDestination(int n) {
@@ -46,6 +48,7 @@ public class Rider extends Thread{
 	}
 
 	public void run() {
+		
 		for (int i = 0; i < myDestinations.size(); i++) {
 			destinationLevel = myDestinations.get(i);
 			
@@ -89,7 +92,7 @@ public class Rider extends Thread{
 
 				if (!gotOn) {
 					myEventBarrier.decrementNumThread();
-					printDidNotGetOn(myElevator, currentFloor);
+					if (waitNum == 0) printDidNotGetOn(myElevator, currentFloor);
 					waitNum++;
 				}
 
