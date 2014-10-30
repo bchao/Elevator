@@ -22,11 +22,8 @@ public class Rider extends Thread{
 	private String myName;
 	private int waitNum = 0;
 	private List<Integer> myDestinations;
-	private boolean noWait;
-	private boolean noRequest;
-	private boolean noExit;
 
-	public Rider(int id, Building b, int floor, List<Integer> d, boolean[] jokers) {
+	public Rider(int id, Building b, int floor, List<Integer> d) {
 		myBarrier = null;
 		currentLevel = floor;
 		myBuilding = b;
@@ -34,12 +31,9 @@ public class Rider extends Thread{
 		myId = id;
 		myName = "R" + id;
 		myDestinations = d;	
-		noWait = jokers[0];
-		noRequest = jokers[1];
-		noExit = jokers[2];
 	}
 
-	public Rider(int id, Building b, int floor, boolean[] jokers) {
+	public Rider(int id, Building b, int floor) {
 		myBarrier = null;
 		currentLevel = floor;
 		myBuilding = b;
@@ -47,9 +41,6 @@ public class Rider extends Thread{
 		myId = id;
 		myName = "R" + id;
 		myDestinations = new ArrayList<Integer>();
-		noWait = jokers[0];
-		noRequest = jokers[1];
-		noExit = jokers[2];
 	}
 
 	public void addDestination(int n) {
