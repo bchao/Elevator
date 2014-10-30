@@ -21,6 +21,9 @@ public class PartTwoInitializer extends AbstractInitializer {
 		myBuilding.runElevators();
 		
 		b.arrive();
+		Parser.writer.println();
+		Parser.writer.println("FINISH SIMULATION");
+		Parser.writer.close();
 	}
 
 }

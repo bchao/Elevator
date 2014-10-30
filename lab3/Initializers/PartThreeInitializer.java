@@ -19,10 +19,11 @@ public class PartThreeInitializer extends AbstractInitializer {
 		createRiders(p.getRiderStarts(), p.getRiderMap());
 		startRiders();
 		myBuilding.runElevators();
-		
-		p.writer.println("hi");
-		
+				
 		b.arrive();
+		Parser.writer.println();
+		Parser.writer.println("FINISH SIMULATION");
+		Parser.writer.close();
 	}
 
 }
