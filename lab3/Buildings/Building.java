@@ -54,12 +54,12 @@ public class Building extends AbstractBuilding {
 	public synchronized Floor getFloor(int currentLevel) {
 		return myFloors.get(currentLevel);
 	}
-	
+	 
 	public synchronized int getMaxLevel() {
 		return myFloors.size() - 1;
 	}
 	
-	public void tripFinished() {
+	public synchronized void tripFinished() {
 		--numberOfTripsToService;
 		if (numberOfTripsToService == 0) finalEventBarrier.raise();
 	}

@@ -86,9 +86,11 @@ public class Rider extends Thread{
 					myElevator.getElevatorWaitingBarrier(destinationLevel).arrive(); // wait inside
 
 
-					myElevator.Exit(); // get out
+					myElevator.Exit(); // get out					
 					
 					printExitElevator(myElevator, myBuilding.getFloor(destinationLevel));
+					
+					myBuilding.tripFinished();
 
 					myElevator.getElevatorWaitingBarrier(destinationLevel).complete(); // signal get out
 					currentLevel = destinationLevel; // update riders location
