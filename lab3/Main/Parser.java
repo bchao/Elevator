@@ -3,6 +3,8 @@ package Main;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 
 import javax.swing.JFileChooser;
@@ -14,8 +16,16 @@ public class Parser {
 	private static int numRiders;
 	private static int maxCap;
 	private static HashMap<Integer, ArrayList<int[]>> riderMap; 	
+	public static PrintWriter writer;
 	
 	public Parser() {
+		try {
+			writer = new PrintWriter("output.txt", "UTF-8");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		openFile();
 	}
 	

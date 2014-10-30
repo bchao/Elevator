@@ -7,6 +7,7 @@ import Buildings.Building;
 import EventBarriers.FloorEventBarrier;
 import Main.Direction;
 import Main.Floor;
+import Main.Parser;
 import Riders.Rider;
 
 /**
@@ -138,17 +139,17 @@ public class InfiniteElevator extends AbstractElevator {
 	// ***** PRINT METHODS ****
 	
 	private void printDoorsOpen() {
-		System.out.println(myName + " on " + myBuilding.getFloor(currentLevel).getName() 
+		Parser.writer.println(myName + " on " + myBuilding.getFloor(currentLevel).getName() 
 							 + " opens");
 	}
 	
 	private void printDoorsClose() {
-		System.out.println(myName + " on " + myBuilding.getFloor(currentLevel).getName() 
+		Parser.writer.println(myName + " on " + myBuilding.getFloor(currentLevel).getName() 
 							 + " closes");
 	}
 	
 	private void printMoveToNewLevel() {
-		System.out.println(myName + " moves " + myDir + " to " + myBuilding.getFloor(currentLevel + myDir.getDir()).getName());
+		Parser.writer.println(myName + " moves " + myDir + " to " + myBuilding.getFloor(currentLevel + myDir.getDir()).getName());
 	}
 	
 	public int getMaxOccupancy() {

@@ -8,6 +8,7 @@ import Elevators.InfiniteElevator;
 import EventBarriers.EventBarrier;
 import EventBarriers.FloorEventBarrier;
 import Main.Floor;
+import Main.Parser;
 
 
 public class Rider extends Thread{
@@ -126,20 +127,20 @@ public class Rider extends Thread{
 	private void printPushButton(int i) {
 		String s = "D";
 		if (i < 0) s = "U";
-		System.out.println(myName + " pushes " + s + currentLevel);
+		Parser.writer.println(myName + " pushes " + s + currentLevel);
 	}
 
 	private void printEnterElevator(InfiniteElevator e, Floor f) {
-		System.out.println(myName + " enters " + e.getStringName() + " on " + f.getName());
-		System.out.println(myName + " pushes " + e.getStringName() + "B" + destinationLevel);
+		Parser.writer.println(myName + " enters " + e.getStringName() + " on " + f.getName());
+		Parser.writer.println(myName + " pushes " + e.getStringName() + "B" + destinationLevel);
 	}
 
 	private void printExitElevator(InfiniteElevator e, Floor f) {
-		System.out.println(myName + " exits " + e.getStringName() + " on " + f.getName());
+		Parser.writer.println(myName + " exits " + e.getStringName() + " on " + f.getName());
 	}
 
 	private void printDidNotGetOn(InfiniteElevator e, Floor f) {
-		System.out.println(myName + " did not get on " + e.getStringName() + " on " + f.getName());
+		Parser.writer.println(myName + " did not get on " + e.getStringName() + " on " + f.getName());
 	}
 
 
