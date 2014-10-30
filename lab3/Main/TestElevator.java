@@ -30,7 +30,25 @@ public class TestElevator {
 //		testPartTwoB();
 //		testPartOneMultipleDestinations();
 		testPartTwoMultipleDestinations();
+		Rider Peter = new Rider(0, myBuilding, 2);
+		Peter.addDestination(3);
+		Rider Parker = new Rider(1, myBuilding, 2);
+		Parker.addDestination(5);
+		Rider Brett = new Rider(2, myBuilding, 2);
+		Brett.addDestination(7);
+		Brett.addDestination(1);
+		Rider Brandon = new Rider(3, myBuilding, 2);
+		Brandon.addDestination(7);
+		Rider Kyle = new Rider(4, myBuilding, 2);
+		Kyle.addDestination(4);
 		
+		myBuilding.setNumberOfTrips(6);
+		
+		Peter.start();
+		Brett.start();
+		Parker.start();
+		Brandon.start();
+		Kyle.start();
 //		testPartTwoFinalTest();
 		
 		myBuilding.runElevators();

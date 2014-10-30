@@ -6,8 +6,7 @@ import Initializers.*;
 
 public class ElevatorMain {
 	
-	public static void main(String args[]) {		
-		// Class called Initializer (parent class)
+	public static void main(String args[]) {
 		
 		if(args.length == 0) {
 			System.out.println("Problem 2 Part 3");
