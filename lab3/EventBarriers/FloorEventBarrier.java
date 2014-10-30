@@ -23,9 +23,8 @@ public class FloorEventBarrier extends EventBarrier {
 		currentElevator = null;
 	}
 	
-	public synchronized void raise(InfiniteElevator el) {
+	public void raise(InfiniteElevator el) {
 		currentElevator = el;
-		
 		elevatorSpace = el.getMaxOccupancy() - el.getNumOccupants();
 		raise();		
 		currentElevator = null;
@@ -56,7 +55,9 @@ public class FloorEventBarrier extends EventBarrier {
 		return elevatorSpace > 0;
 	}
 
-	public void decrementNumThread() {
+	// changed
+	public synchronized void decrementNumThread() {
 		numUnfinishedThreads--;
 	}
+	
 }

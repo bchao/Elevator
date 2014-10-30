@@ -41,14 +41,10 @@ public class InfiniteElevator extends AbstractElevator {
 			
 			Floor currentFloor = myBuilding.getFloor(currentLevel);
 
-//			if (numOccupants > 0) {
-//				for (int i : myDestinations) {
-//					System.out.println(i);
-//				}
-//			}
-			
-			if (myDestinations.contains(currentLevel) || 
-					currentFloor.peopleWaiting(myDir)) {
+
+
+			if ((myDestinations.contains(currentLevel) || 
+					currentFloor.peopleWaiting(myDir)) && elevatorNotAlreadyThere(currentFloor)) {
 				VisitFloor(currentLevel);
 			}
 						
@@ -58,6 +54,10 @@ public class InfiniteElevator extends AbstractElevator {
 
 			
 		}
+	}
+
+	private synchronized boolean elevatorNotAlreadyThere(Floor currentFloor) {
+		return currentFloor.getEventBarrier(myDir).getElevator() == null;		
 	}
 
 	private synchronized void waitForRequests() {
@@ -75,7 +75,8 @@ public class InfiniteElevator extends AbstractElevator {
 	}
 
 
-	private synchronized void changeLevel() {
+		// was synch
+	private void changeLevel() {
 		if (currentLevel == myBuilding.getMaxLevel()) myDir = Direction.DOWN;
 		if (currentLevel == 0) myDir = Direction.UP;
 		
@@ -93,15 +94,11 @@ public class InfiniteElevator extends AbstractElevator {
 		if (currentLevel != myBuilding.getMaxLevel() && currentLevel != 0) 
 			currentFloor.getEventBarrier(myDir).raise(this); // notify those waiting that 'vator is here
 		else currentFloor.getEventBarrier(myDir.getOppositeDir()).raise(this);
-//		try {
-//			throw new Exception();
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
 	}
 
-	public void CloseDoors() {
+	// was not before
+	public synchronized void CloseDoors() {
 		
 		printDoorsClose();
 		
@@ -133,7 +130,7 @@ public class InfiniteElevator extends AbstractElevator {
 		myDestinations.add(floor);
 	}
 	
-	public synchronized boolean isFull() {
+	public boolean isFull() {
 		return false;
 	}
 

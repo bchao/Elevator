@@ -15,8 +15,10 @@ public class TestElevator {
 	@Test
 	public void testOneElevator() {
 		// CHOOSE WHICH TYPE
+		
 		//myBuilding = new PartOneBuilding(10, 1, 10);
-		myBuilding = new PartTwoBuilding(10, 1, 3);
+		//myBuilding = new PartTwoBuilding(10, 1, 3);
+		myBuilding = new PartTwoBuilding(10, 2, 3);
 		
 		//testPartOne();
 		//testPartTwo();

@@ -24,7 +24,7 @@ public class EventBarrier extends AbstractEventBarrier {
 	
 	public synchronized void arrive() {
 		numUnfinishedThreads++;
-		
+		notifyAll();
 		while(!eventInProg){
 			try{
 				wait();

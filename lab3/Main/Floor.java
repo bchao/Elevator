@@ -22,22 +22,22 @@ public class Floor {
 		floorName = "F" + id;
 	}
 
-	public void incrementWaiter(int difference) { // difference = currentFloor - destination
+	public synchronized void incrementWaiter(int difference) { // difference = currentFloor - destination
 		if (difference > 0) numDownWaiters++; 
 		else numUpWaiters++;
 	}
 	
-	public void decrementWaiter(int difference) {
+	public synchronized void decrementWaiter(int difference) {
 		if (difference > 0) numDownWaiters--;
 		else numUpWaiters--;
 	}
 
-	public EventBarrier getEventBarrier(int difference) {
+	public synchronized EventBarrier getEventBarrier(int difference) {
 		if (difference < 0) return myUpEventBarrier;
 		else return myDownEventBarrier;
 	}
 	
-	public boolean peopleWaiting(Direction d) {
+	public synchronized boolean peopleWaiting(Direction d) {
 		
 		switch (d) {
 			case UP:
@@ -50,7 +50,7 @@ public class Floor {
 		return false;
 	}
 
-	public FloorEventBarrier getEventBarrier(Direction myDir) {
+	public synchronized FloorEventBarrier getEventBarrier(Direction myDir) {
 		
 		switch (myDir) {
 		case UP:

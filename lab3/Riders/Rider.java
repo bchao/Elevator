@@ -50,15 +50,18 @@ public class Rider extends Thread{
 	public void run() {
 		
 		for (int i = 0; i < myDestinations.size(); i++) {
+			
 			destinationLevel = myDestinations.get(i);
 			
 			boolean gotOn = false;
 			Floor currentFloor = myBuilding.getFloor(currentLevel);
 			myBuilding.requestElevator(this);
+			
+			printPushButton(currentLevel - destinationLevel);
+			
 			FloorEventBarrier myEventBarrier = 
 					(FloorEventBarrier) currentFloor.getEventBarrier(currentLevel - destinationLevel);
 
-			printPushButton(currentLevel - destinationLevel);
 
 			while (!gotOn) {
 
@@ -81,13 +84,16 @@ public class Rider extends Thread{
 
 					myElevator.getElevatorWaitingBarrier(destinationLevel).arrive(); // wait inside
 
-					printExitElevator(myElevator, myBuilding.getFloor(destinationLevel));
 
 					myElevator.Exit(); // get out
+					
+					printExitElevator(myElevator, myBuilding.getFloor(destinationLevel));
+
 					myElevator.getElevatorWaitingBarrier(destinationLevel).complete(); // signal get out
 					currentLevel = destinationLevel; // update riders location
 
-					myElevator = null; // now doesn't have an elevator
+					// MIGHT NEED TO BE SET TO NULL AGAIN
+					//myElevator = null; // now doesn't have an elevator
 				}
 
 				if (!gotOn) {
@@ -98,6 +104,7 @@ public class Rider extends Thread{
 
 			}
 
+			waitNum = 0;
 			// **** IMPLEMENT THE LOOP FOR FILE READING NOW ****
 
 		}
