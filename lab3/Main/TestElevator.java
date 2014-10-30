@@ -82,15 +82,15 @@ public class TestElevator {
 	private void testPartTwoB() {
 		
 		Rider Peter = new Rider(0, myBuilding, 2);
-		Peter.setDestination(3);
+		Peter.addDestination(3);
 		Rider Parker = new Rider(1, myBuilding, 2);
-		Parker.setDestination(5);
+		Parker.addDestination(5);
 		Rider Brett = new Rider(2, myBuilding, 2);
-		Brett.setDestination(7);
+		Brett.addDestination(7);
 		Rider Brandon = new Rider(3, myBuilding, 2);
-		Brandon.setDestination(7);
+		Brandon.addDestination(7);
 		Rider Kyle = new Rider(4, myBuilding, 2);
-		Kyle.setDestination(4);
+		Kyle.addDestination(4);
 		
 		Peter.start();
 		Brett.start();
@@ -102,16 +102,16 @@ public class TestElevator {
 	private void testPartTwoMultipleDestinations() {
 		
 		Rider Peter = new Rider(0, myBuilding, 2);
-		Peter.setDestination(3);
+		Peter.addDestination(3);
 		Rider Parker = new Rider(1, myBuilding, 2);
-		Parker.setDestination(5);
+		Parker.addDestination(5);
 		Rider Brett = new Rider(2, myBuilding, 2);
-		Brett.setDestination(7);
-		Brett.setDestination(1);
+		Brett.addDestination(7);
+		Brett.addDestination(1);
 		Rider Brandon = new Rider(3, myBuilding, 2);
-		Brandon.setDestination(7);
+		Brandon.addDestination(7);
 		Rider Kyle = new Rider(4, myBuilding, 2);
-		Kyle.setDestination(4);
+		Kyle.addDestination(4);
 		
 		Peter.start();
 		Brett.start();
@@ -122,19 +122,19 @@ public class TestElevator {
 	
 	private void testPartTwoFinalTest() {
 		Rider Peter = new Rider(0, myBuilding, 2);
-		Peter.setDestination(8);
+		Peter.addDestination(8);
 		Rider Parker = new Rider(1, myBuilding, 2);
-		Parker.setDestination(6);
+		Parker.addDestination(6);
 		Rider Brett = new Rider(2, myBuilding, 2);
-		Brett.setDestination(7);
-		Brett.setDestination(1);
+		Brett.addDestination(7);
+		Brett.addDestination(1);
 		Rider Brandon = new Rider(3, myBuilding, 2);
-		Brandon.setDestination(7);
+		Brandon.addDestination(7);
 		Rider Kyle = new Rider(4, myBuilding, 2);
-		Kyle.setDestination(8);
+		Kyle.addDestination(8);
 		
 		Rider Josh = new Rider(5, myBuilding, 5);
-		Josh.setDestination(7);
+		Josh.addDestination(7);
 		
 		Peter.start();
 		Brett.start();
