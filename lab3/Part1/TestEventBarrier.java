@@ -1,11 +1,10 @@
-package Main;
+package Part1;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
 
-import EventBarriers.EventBarrier;
-import Riders.Minstrel;
 import static org.junit.Assert.*;
 
 public class TestEventBarrier {
@@ -21,7 +20,12 @@ public class TestEventBarrier {
 			mList.get(i).start();
 		}
 		
-		sleepThread();
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		assertEquals(4, evBar.waiters());
 	}
@@ -37,33 +41,21 @@ public class TestEventBarrier {
 		
 		evBar.raise();
 		
-		assertEquals(0, evBar.waiters()); // are all threads finished? should be
-		assertFalse(evBar.isEventInProg()); // was condition var set back to false?
-		
-		mList.get(numThreads-1).start(); // send another thread to gate, gets rejected
-		
-		sleepThread();
-		System.out.println(evBar.waiters());
-		assertEquals(1, evBar.waiters());
 		assertFalse(evBar.isEventInProg());
-
+		
+		// last minstrel to squeeze through while EventBarrier raised
+		mList.get(numThreads-1).start();
+		
+		assertFalse(evBar.isEventInProg());
 	}
 	
-	private void testHelper(int num){
+	public void testHelper(int num){
 		evBar = new EventBarrier();
 		mList = new ArrayList<Thread>();
 		
 		for(int i = 0; i<num; i++)
 			mList.add(new Minstrel(evBar));
 
-	}
-	
-	private void sleepThread() {
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 
 }

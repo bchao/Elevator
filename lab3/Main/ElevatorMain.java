@@ -9,7 +9,7 @@ public class ElevatorMain {
 
 	public static void main(String args[]) {		
 		// Class called Initializer (parent class)
-		System.out.println("Enter p2part1 to run Part 1, p2part2 to run Part 2, or p2part3 to run Part 3.\n");
+		System.out.print("Enter 'p2part1', 'p2part2', or 'p2part3': ");
 		Scanner sc = new Scanner(System.in);
 		String part = "";
 		if (sc.hasNext()) {
@@ -17,7 +17,7 @@ public class ElevatorMain {
 		}
 		if(part.equals("part1")) {
 			System.out.println("Problem 1");
-			TestEventBarrier tb = new TestEventBarrier();
+			Part1.TestEventBarrier teb = new Part1.TestEventBarrier();
 		}
 		else if (part.equals("p2part1")) {
 			System.out.println("Problem 2 Part 1");
@@ -31,6 +31,6 @@ public class ElevatorMain {
 			System.out.println("Problem 2 Part 3");
 			PartThreeInitializer p2p3 = new PartThreeInitializer();
 			p2p3.beginSimulation();
-		}
+		}		
 	}
 }
