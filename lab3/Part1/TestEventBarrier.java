@@ -40,12 +40,14 @@ public class TestEventBarrier {
 		}
 		
 		evBar.raise();
-		
 		assertFalse(evBar.isEventInProg());
+		System.out.println(evBar.waiters());
+		assertEquals(0, evBar.waiters());
 		
 		// last minstrel to squeeze through while EventBarrier raised
 		mList.get(numThreads-1).start();
-		
+		sleepThread();
+				
 		assertFalse(evBar.isEventInProg());
 	}
 	
@@ -56,6 +58,15 @@ public class TestEventBarrier {
 		for(int i = 0; i<num; i++)
 			mList.add(new Minstrel(evBar));
 
+	}
+	
+	public void sleepThread() {
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
