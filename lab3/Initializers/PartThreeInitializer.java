@@ -16,7 +16,7 @@ public class PartThreeInitializer extends AbstractInitializer {
 		myBuilding = new PartThreeBuilding(p.getFloors(), p.getElevators(), p.getCapacity());
 		myBuilding.setEvBar(b);
 
-		createRiders(p.getRiderStarts(), p.getRiderMap());
+		createRiders(p.getRiderStarts(), p.getRiderMap(), p.getRiderBehaviors());
 		startRiders();
 		myBuilding.runElevators();
 				

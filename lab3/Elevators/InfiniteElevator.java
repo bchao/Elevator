@@ -131,7 +131,10 @@ public class InfiniteElevator extends AbstractElevator {
 		OpenDoors();
 		CloseDoors();
 	}
-
+	
+	public synchronized void fakeEnter() {
+		myBuilding.setGlobalNumPeopleWaiting(-1);
+	}
 	
 	public synchronized boolean Enter() {
 		if (!isFull()) {

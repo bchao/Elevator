@@ -19,6 +19,7 @@ public class Parser {
 	private static HashMap<Integer, ArrayList<Integer>> riderMap;	
 	private static int[] riderStarts;
 	public static PrintWriter writer;
+	private static String[] riderBehavior;
 	
 	public Parser() {
 		try {
@@ -40,7 +41,7 @@ public class Parser {
 		maxCap = Integer.parseInt(initParam[3]);
 		
 		riderStarts = new int[numRiders];
-		
+		riderBehavior = new String[numRiders];
 		riderMap = new HashMap<Integer, ArrayList<Integer>>();
 		
 		while(s.hasNextLine()) {
@@ -48,11 +49,18 @@ public class Parser {
 			int riderNumber = Integer.parseInt(params[0]) - 1;
 			int startingFloor = Integer.parseInt(params[1]) - 1;
 			int destinationFloor = Integer.parseInt(params[2]) - 1;
+			String behavior;
+			if (params.length > 3) {
+				behavior = params[3];
+			} else {
+				behavior = "WELL_BEHAVED";
+			}
+
 			
 			int[] riderAttributes = {startingFloor, destinationFloor};
 			
 			riderStarts[riderNumber] = startingFloor;
-			
+			riderBehavior[riderNumber] = behavior;
 			if(riderMap.get(riderNumber) == null) {
 				ArrayList<Integer> temp = new ArrayList<Integer>();
 				temp.add(destinationFloor);
@@ -109,6 +117,7 @@ public class Parser {
 	public int[] getRiderStarts() {
 		return riderStarts;
 	}
-
-	
+	public String[] getRiderBehaviors() {
+		return riderBehavior;
+	}
 }
