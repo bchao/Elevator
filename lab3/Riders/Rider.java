@@ -29,7 +29,7 @@ public class Rider extends Thread{
 		myBuilding = b;
 		myElevator = null;
 		myId = id;
-		myName = "R" + id;
+		myName = "R" + (id + 1);
 		myDestinations = d;	
 	}
 
@@ -39,7 +39,7 @@ public class Rider extends Thread{
 		myBuilding = b;
 		myElevator = null;
 		myId = id;
-		myName = "R" + id;
+		myName = "R" + (id + 1);
 		myDestinations = new ArrayList<Integer>();
 	}
 
