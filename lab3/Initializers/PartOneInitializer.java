@@ -16,7 +16,7 @@ public class PartOneInitializer extends AbstractInitializer{
 		EventBarrier b = new EventBarrier();
 		myBuilding.setEvBar(b);
 
-		createRiders(p.getRiderStarts(), p.getRiderMap());
+		createRiders(p.getRiderStarts(), p.getRiderMap(), p.getRiderBehaviors());
 		startRiders();
 		myBuilding.runElevators();
 		

@@ -13,15 +13,15 @@ import Main.Parser;
 
 public class Rider extends Thread{
 
-	private Building myBuilding;
-	private EventBarrier myBarrier;
-	private int currentLevel;
-	private int destinationLevel;
-	private InfiniteElevator myElevator;
-	private int myId;
-	private String myName;
-	private int waitNum = 0;
-	private List<Integer> myDestinations;
+	protected Building myBuilding;
+	protected EventBarrier myBarrier;
+	protected int currentLevel;
+	protected int destinationLevel;
+	protected InfiniteElevator myElevator;
+	protected int myId;
+	protected String myName;
+	protected int waitNum = 0;
+	protected List<Integer> myDestinations;
 
 	public Rider(int id, Building b, int floor, List<Integer> d) {
 		myBarrier = null;
@@ -78,6 +78,7 @@ public class Rider extends Thread{
 					myBuilding.getFloor(currentLevel).decrementWaiter(difference);
 
 					printEnterElevator(myElevator, currentFloor);
+					printRequestFloor(myElevator, currentFloor);
 
 					myElevator.RequestFloor(destinationLevel);
 
@@ -128,22 +129,25 @@ public class Rider extends Thread{
 	// ***** PRINT METHODS *****
 
 
-	private void printPushButton(int i) {
+	protected void printPushButton(int i) {
 		String s = "D";
 		if (i < 0) s = "U";
 		Parser.writer.println(myName + " pushes " + s + (currentLevel + 1));
 	}
 
-	private void printEnterElevator(InfiniteElevator e, Floor f) {
+	protected void printEnterElevator(InfiniteElevator e, Floor f) {
 		Parser.writer.println(myName + " enters " + e.getStringName() + " on " + f.getName());
+	}
+	
+	protected void printRequestFloor(InfiniteElevator e, Floor f) {
 		Parser.writer.println(myName + " pushes " + e.getStringName() + "B" + (destinationLevel + 1));
 	}
 
-	private void printExitElevator(InfiniteElevator e, Floor f) {
+	protected void printExitElevator(InfiniteElevator e, Floor f) {
 		Parser.writer.println(myName + " exits " + e.getStringName() + " on " + f.getName());
 	}
 
-	private void printDidNotGetOn(InfiniteElevator e, Floor f) {
+	protected void printDidNotGetOn(InfiniteElevator e, Floor f) {
 		Parser.writer.println(myName + " did not get on " + e.getStringName() + " on " + f.getName());
 	}
 
